@@ -1,0 +1,241 @@
+---
+permalink: monitor/comparing-alerts-and-alarms.html 
+sidebar: sidebar 
+keywords: how to compare alerts and alarms 
+summary: 알림 시스템과 기존 경보 시스템은 몇 가지 유사점이 있지만, 알림 시스템은 상당한 이점을 제공하며 사용이 간편합니다. 
+---
+= 경고와 알람을 비교합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+알림 시스템과 기존 경보 시스템은 몇 가지 유사점이 있지만, 알림 시스템은 상당한 이점을 제공하며 사용이 간편합니다.
+
+유사한 작업을 수행하는 방법은 다음 표를 참조하십시오.
+
+[cols="1a,1a,1a"]
+|===
+|  | 경고 | 알람(레거시 시스템) 
+
+
+ a| 
+어떤 경보 또는 경보가 활성 상태인지 어떻게 알 수 있습니까?
+ a| 
+* 대시보드에서 * Current alerts * 링크를 선택합니다.
+* nodes * > * Overview * 페이지에서 경고를 선택합니다.
+* alerts * > * current * 를 선택합니다.
+
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["현재 경고를 봅니다"]
+ a| 
+지원 * > * 알람(레거시) * > * 현재 알람 * 을 선택합니다.
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+경보 또는 경보가 트리거되는 원인은 무엇입니까?
+ a| 
+알림은 알림 규칙의 Prometheus 식이 특정 트리거 조건 및 기간에 대해 true로 평가될 때 트리거됩니다.
+
+link:view-alert-rules.html["경고 규칙을 봅니다"]
+ a| 
+StorageGRID 속성이 임계값에 도달하면 알람이 트리거됩니다.
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+경고 또는 알람이 트리거된 경우 기본 문제를 어떻게 해결합니까?
+ a| 
+경고에 대한 권장 조치는 이메일 알림에 포함되며 Grid Manager의 Alerts 페이지에서 사용할 수 있습니다.
+
+필요한 경우 StorageGRID 설명서에 추가 정보가 제공됩니다.
+
+link:alerts-reference.html["경고 참조"]
+ a| 
+속성 이름을 선택하여 알람에 대해 자세히 알아보거나 StorageGRID 설명서에서 경보 코드를 검색할 수 있습니다.
+
+link:alarms-reference.html["알람 기준(레거시 시스템)"]
+
+
+
+ a| 
+해결된 경고 또는 알람 목록은 어디에서 확인할 수 있습니까?
+ a| 
+alerts * > * Resolved * 를 선택합니다.
+
+link:monitoring-system-health.html#view-current-and-resolved-alerts["현재 및 해결된 경고를 봅니다"]
+ a| 
+지원 * > * 알람(레거시) * > * 내역 알람 * 을 선택합니다.
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+설정 관리 위치
+ a| 
+알림 * > * 규칙 * 을 선택합니다.
+
+link:managing-alerts.html["알림을 관리합니다"]
+ a| 
+지원 * 을 선택합니다. 그런 다음 메뉴의 * Alarms (Legacy) * (알람(레거시) *) 섹션에 있는 옵션을 사용합니다.
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+어떤 사용자 그룹 권한이 필요합니까?
+ a| 
+* Grid Manager에 로그인할 수 있는 모든 사용자는 현재 및 해결된 경고를 볼 수 있습니다.
+* 알림, 알림 알림 및 알림 규칙을 관리하려면 알림 관리 권한이 있어야 합니다.
+
+
+link:../admin/index.html["StorageGRID 관리"]
+ a| 
+* Grid Manager에 로그인할 수 있는 모든 사용자는 레거시 알람을 볼 수 있습니다.
+* 알람을 승인하려면 알람 확인 권한이 있어야 합니다.
+* 글로벌 경보 및 이메일 알림을 관리하려면 그리드 토폴로지 페이지 구성 및 기타 그리드 구성 권한이 모두 있어야 합니다.
+
+
+link:../admin/index.html["StorageGRID 관리"]
+
+
+
+ a| 
+이메일 알림은 어떻게 관리합니까?
+ a| 
+알림 * > * 이메일 설정 * 을 선택합니다.
+
+* 참고: * 알람과 알림은 독립 시스템이므로 알람 및 AutoSupport 알림에 사용되는 이메일 설정은 알림 용도로 사용되지 않습니다. 그러나 모든 알림에 동일한 메일 서버를 사용할 수 있습니다.
+
+link:email-alert-notifications.html["알림에 대한 이메일 알림을 설정합니다"]
+ a| 
+지원 * > * 알람(레거시) * > * 레거시 이메일 설정 * 을 선택합니다.
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+SNMP 알림을 관리하려면 어떻게 해야 합니까?
+ a| 
+구성 * > * 모니터링 * > * SNMP 에이전트 * 를 선택합니다.
+
+link:using-snmp-monitoring.html["SNMP 모니터링을 사용합니다"]
+ a| 
+_ 지원되지 않음 _
+
+
+
+ a| 
+알림을 받는 사람을 어떻게 제어합니까?
+ a| 
+. 알림 * > * 이메일 설정 * 을 선택합니다.
+. 받는 사람* 섹션에서 경고가 발생할 때 전자 메일을 받을 각 전자 메일 목록의 전자 메일 주소를 입력합니다.
+
+
+link:email-alert-notifications.html["알림에 대한 이메일 알림을 설정합니다"]
+ a| 
+. 지원 * > * 알람(레거시) * > * 레거시 이메일 설정 * 을 선택합니다.
+. 메일 그룹 만들기.
+. 알림 * 을 선택합니다.
+. 메일 그룹을 선택합니다.
+
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+알림을 보내는 관리 노드는 무엇입니까?
+ a| 
+단일 관리 노드(기본 보낸 사람)
+
+link:../primer/what-admin-node-is.html["관리 노드란 무엇입니까?"]
+ a| 
+단일 관리 노드(기본 보낸 사람)
+
+link:../primer/what-admin-node-is.html["관리 노드란 무엇입니까?"]
+
+
+
+ a| 
+일부 알림을 표시하지 않으려면 어떻게 해야 합니까?
+ a| 
+. alerts * > * silences * 를 선택합니다.
+. 무음 설정할 경고 규칙을 선택합니다.
+. 무음 시간을 지정합니다.
+. 무음 설정할 경고의 심각도를 선택합니다.
+. 전체 그리드, 단일 사이트 또는 단일 노드에 무음을 적용하려면 선택합니다.
+
+
+* 참고 *: SNMP 에이전트를 사용하도록 설정한 경우, SNMP 트랩을 표시하지 않고 알려줍니다.
+
+link:silencing-alert-notifications.html["알림 메시지를 해제합니다"]
+ a| 
+. 지원 * > * 알람(레거시) * > * 레거시 이메일 설정 * 을 선택합니다.
+. 알림 * 을 선택합니다.
+. 메일링 목록을 선택하고 * 기능 억제 * 를 선택합니다.
+
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+모든 알림을 표시하지 않으려면 어떻게 해야 합니까?
+ a| 
+alerts * > * silences * 를 선택한 후 * all rules * 를 선택합니다.
+
+* 참고 *: SNMP 에이전트를 사용하도록 설정한 경우, SNMP 트랩을 표시하지 않고 알려줍니다.
+
+link:silencing-alert-notifications.html["알림 메시지를 해제합니다"]
+ a| 
+_ 지원되지 않음 _
+
+
+
+ a| 
+조건 및 트리거를 사용자 지정하려면 어떻게 해야 합니까?
+ a| 
+. 알림 * > * 규칙 * 을 선택합니다.
+. 편집할 기본 규칙을 선택하거나 * 사용자 지정 규칙 만들기 * 를 선택합니다.
+
+
+link:editing-alert-rules.html["알림 규칙을 편집합니다"]
+
+link:creating-custom-alert-rules.html["사용자 지정 알림 규칙을 생성합니다"]
+ a| 
+. 지원 * > * 알람(레거시) * > * 전체 알람 * 을 선택합니다.
+. 기본 알람을 재정의하거나 기본 알람이 없는 속성을 모니터링하려면 글로벌 사용자 정의 알람을 생성합니다.
+
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+
+
+ a| 
+개별 경보 또는 경보를 비활성화하려면 어떻게 해야 합니까?
+ a| 
+. 알림 * > * 규칙 * 을 선택합니다.
+. 규칙을 선택하고 * 규칙 편집 * 을 선택합니다.
+. 사용 * 확인란의 선택을 취소합니다.
+
+
+link:disabling-alert-rules.html["경고 규칙을 비활성화합니다"]
+ a| 
+. 지원 * > * 알람(레거시) * > * 전체 알람 * 을 선택합니다.
+. 규칙을 선택하고 편집 아이콘을 선택합니다.
+. 사용 * 확인란의 선택을 취소합니다.
+
+
+link:managing-alarms.html["알람 관리(기존 시스템)"]
+
+|===

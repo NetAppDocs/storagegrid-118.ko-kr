@@ -1,0 +1,16 @@
+---
+permalink: maintain/recovering-from-gateway-node-failures.html 
+sidebar: sidebar 
+keywords: recover, gateway node failure, workflow 
+summary: 게이트웨이 노드 장애를 복구하려면 일련의 작업을 정확히 완료해야 합니다. 
+---
+= 게이트웨이 노드 장애에서 복구: 워크플로우
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+게이트웨이 노드 장애를 복구하려면 일련의 작업을 정확히 완료해야 합니다.
+
+image::../media/overview_api_gateway_node_recovery.png[게이트웨이 노드 복구의 개요 흐름도]

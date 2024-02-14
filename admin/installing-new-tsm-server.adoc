@@ -1,0 +1,17 @@
+---
+permalink: admin/installing-new-tsm-server.html 
+sidebar: sidebar 
+keywords: install tsm server, tivoli storage manager, integrate archive node with tsm 
+summary: 아카이브 노드를 새 TSM 서버 또는 기존 TSM 서버와 통합할 수 있습니다. 새 TSM 서버를 설치하는 경우 TSM 설명서의 지침에 따라 설치를 완료합니다. 
+---
+= 새 TSM 서버를 설치합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+아카이브 노드를 새 TSM 서버 또는 기존 TSM 서버와 통합할 수 있습니다. 새 TSM 서버를 설치하는 경우 TSM 설명서의 지침에 따라 설치를 완료합니다.
+
+
+NOTE: 아카이브 노드는 TSM 서버와 함께 호스팅할 수 없습니다.

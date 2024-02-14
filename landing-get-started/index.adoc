@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-get-started/index.html 
+summary: StorageGRID 시스템을 설치하고 사용하기 전에 잠시 시간을 내어 StorageGRID가 무엇인지 알아보십시오. 
+---
+= StorageGRID 시스템을 시작하십시오
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

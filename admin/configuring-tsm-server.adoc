@@ -1,0 +1,22 @@
+---
+permalink: admin/configuring-tsm-server.html 
+sidebar: sidebar 
+keywords: tsm server, tivoli storage manager 
+summary: 이 섹션에는 TSM 모범 사례에 따라 TSM 서버를 준비하는 데 필요한 예제 지침이 포함되어 있습니다. 
+---
+= TSM 서버를 구성합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에는 TSM 모범 사례에 따라 TSM 서버를 준비하는 데 필요한 예제 지침이 포함되어 있습니다.
+
+다음 지침은 의 프로세스를 안내합니다.
+
+* TSM 서버에서 디스크 스토리지 풀 및 테이프 스토리지 풀(필요한 경우) 정의
+* 아카이브 노드에서 저장된 데이터에 대해 TSM 관리 클래스를 사용하는 도메인 정책을 정의하고 이 도메인 정책을 사용하도록 노드를 등록합니다
+
+
+이 지침은 참조용으로만 제공됩니다. TSM 설명서를 교체하거나 모든 구성에 적합한 완전하고 포괄적인 지침을 제공하기 위한 지침은 아닙니다. 자세한 요구 사항 및 전체 TSM 서버 설명서를 모두 숙지한 TSM 관리자가 배포별 지침을 제공해야 합니다.

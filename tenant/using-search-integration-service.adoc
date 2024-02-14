@@ -1,0 +1,37 @@
+---
+permalink: tenant/using-search-integration-service.html 
+sidebar: sidebar 
+keywords: how to use search integration service 
+summary: 검색 통합 서비스는 세 가지 StorageGRID 플랫폼 서비스 중 하나입니다. 오브젝트 생성, 삭제 또는 해당 메타데이터 또는 태그가 업데이트될 때마다 대상 검색 인덱스에 오브젝트 메타데이터를 전송하도록 이 서비스를 활성화할 수 있습니다. 
+---
+= 검색 통합 서비스를 사용합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+검색 통합 서비스는 세 가지 StorageGRID 플랫폼 서비스 중 하나입니다. 오브젝트 생성, 삭제 또는 해당 메타데이터 또는 태그가 업데이트될 때마다 대상 검색 인덱스에 오브젝트 메타데이터를 전송하도록 이 서비스를 활성화할 수 있습니다.
+
+테넌트 관리자를 사용하여 버킷에 사용자 지정 StorageGRID 구성 XML을 적용하여 검색 통합을 구성할 수 있습니다.
+
+
+NOTE: 검색 통합 서비스로 인해 개체 메타데이터가 대상으로 전송되기 때문에 해당 구성 XML을 _ 메타데이터 알림 구성 xml _ 이라고 합니다. 이 구성 XML은 이벤트 알림을 설정하는 데 사용되는 _notification 구성 xml_과 다릅니다.
+
+를 참조하십시오 link:../s3/index.html["S3 클라이언트 애플리케이션 구현 지침"] 다음 사용자 지정 StorageGRID S3 REST API 작업에 대한 자세한 내용은 다음을 참조하십시오.
+
+* 버킷 메타데이터 알림 구성을 삭제합니다
+* Bucket 메타데이터 알림 구성 가져오기
+* Put Bucket 메타데이터 알림 구성
+
+
+.관련 정보
+link:configuration-xml-for-search-configuration.html["검색 통합을 위한 구성 XML"]
+
+link:object-metadata-included-in-metadata-notifications.html["메타데이터 알림에 포함된 개체 메타데이터입니다"]
+
+link:json-generated-by-search-integration-service.html["JSON이 검색 통합 서비스에 의해 생성되었습니다"]
+
+link:configuring-search-integration-service.html["검색 통합 서비스를 구성합니다"]
+
+link:../s3/index.html["S3 REST API 사용"]

@@ -1,0 +1,84 @@
+---
+permalink: swift/account-operations.html 
+sidebar: sidebar 
+keywords: swift account operations 
+summary: 다음 Swift API 작업은 어카운트에 대해 수행됩니다. 
+---
+= 계정 작업
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+다음 Swift API 작업은 어카운트에 대해 수행됩니다.
+
+
+
+== 계정을 가져옵니다
+
+이 작업은 계정 및 계정 사용 통계와 연결된 컨테이너 목록을 검색합니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+
+
+다음 요청 헤더가 필요합니다.
+
+* `X-Auth-Token`
+
+
+다음과 같은 지원되는 요청 쿼리 매개 변수는 선택 사항입니다.
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Prefix`
+
+
+성공적으로 실행되면 계정이 발견되어 컨테이너가 없거나 컨테이너 목록이 비어 있는 경우 "HTTP/1.1 204 콘텐츠 없음" 응답과 함께 다음 헤더가 반환되고, 계정이 발견되고 컨테이너 목록이 비어 있지 않은 경우 "HTTP/1.1 200 OK" 응답이 반환됩니다.
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== 머리 계정
+
+이 작업은 Swift 계정에서 계정 정보 및 통계를 검색합니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+
+
+다음 요청 헤더가 필요합니다.
+
+* `X-Auth-Token`
+
+
+성공적으로 실행하면 "HTTP/1.1 204 컨텐츠 없음" 응답이 있는 다음 헤더가 반환됩니다.
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Account-Bytes-Used`
+* `X-Account-Container-Count`
+* `X-Account-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+.관련 정보
+link:swift-operations-tracked-in-audit-logs.html["감사 로그에서 Swift 작업이 추적되었습니다"]

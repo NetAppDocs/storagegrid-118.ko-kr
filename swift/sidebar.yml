@@ -1,0 +1,35 @@
+---
+section: swift
+title: Swift REST API 사용(더 이상 사용 안 함)
+entries:
+- title: 개요
+  pdf-filename: StorageGRID와 함께 Swift를 사용합니다
+  url: "/swift/index.html"
+  entries:
+  - title: StorageGRID의 Swift API 지원 기록
+    url: "/swift/history-of-swift-api-support-in-storagegrid.html"
+  - title: StorageGRID가 Swift REST API를 구현하는 방법
+    url: "/swift/how-storagegrid-implements-swift-rest-api.html"
+  - title: Swift REST API 구축을 위한 권장 사항
+    url: "/swift/recommendations-for-implementing-swift-rest-api.html"
+- title: Swift REST API 연결을 테스트합니다
+  url: "/swift/configuring-tenant-accounts-and-connections.html"
+- title: Swift REST API가 작업을 지원했습니다
+  url: "/swift/swift-rest-api-supported-operations.html"
+  entries:
+  - title: 지원되는 Swift API 엔드포인트
+    url: "/swift/supported-swift-api-endpoints.html"
+  - title: 계정 작업
+    url: "/swift/account-operations.html"
+  - title: 컨테이너 작업
+    url: "/swift/container-operations.html"
+  - title: 오브젝트 작업
+    url: "/swift/object-operations.html"
+  - title: 옵션 요청
+    url: "/swift/options-request.html"
+  - title: Swift API 작업에 대한 오류 응답
+    url: "/swift/error-responses-to-swift-api-operations.html"
+- title: StorageGRID Swift REST API 작업
+  url: "/swift/storagegrid-swift-rest-api-operations.html"
+- title: 감사 로그에서 Swift 작업이 추적되었습니다
+  url: "/swift/swift-operations-tracked-in-audit-logs.html"

@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-use/index.html 
+summary: 초기 구성이 완료된 후 StorageGRID 테넌트 계정은 버킷을 생성하고 S3 클라이언트 애플리케이션을 사용하여 오브젝트를 수집, 검색 및 삭제할 수 있습니다. 
+---
+= StorageGRID 테넌트 및 클라이언트 사용
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

@@ -1,0 +1,31 @@
+---
+permalink: audit/event-specific-data.html 
+sidebar: sidebar 
+keywords: audit message, event, shea, s3 head 
+summary: 감사 로그의 각 감사 메시지는 시스템 이벤트와 관련된 데이터를 기록합니다. 
+---
+= 이벤트 관련 데이터
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+감사 로그의 각 감사 메시지는 시스템 이벤트와 관련된 데이터를 기록합니다.
+
+구멍을 따라오는 중입니다 `[AUDT:` 메시지 자체를 식별하는 컨테이너이며, 다음 특성 집합은 감사 메시지에서 설명하는 이벤트 또는 작업에 대한 정보를 제공합니다. 이러한 특성은 다음 예제에서 강조됩니다.
+
+[]
+====
+2018-12-05T08:24:45.921845 [AUDT: * \[RSLT\(FC32\):SUCS\] *
+* \[시간\(UI64\):11454\]\[SAIP\(iPad\):"10.224.0.100"\]\[S3AI\(CStr\):"60025621595611246499"\] *
+* \[SACC\(CStr\):"계정"\]\[S3AK\(CStr\):"SGKH4_Nc8SO1H6w3w0nCOFCGk__E6dYzKlumRsKJA="\] *
+* \[SUSR\(CStr\):"urn:SGWs:identity::60025621595611246499:root"\]*
+* \[SBAI\(CStr\):"60025621595611246499"\]\[SBAC\(CStr\):"계정"\]\[S3BK\(CStr\):"버킷"\]*
+* \[S3KY\(CStr\):"object"\]\[CBID\(UI64\): 0xCC128B9B9E428347\] *
+* \[UUID\(CStr\):"B975D2CE-E4DA-4D14-8A23-1CB4B83F2CD8"\]\[CSIZ\(UI64\):30720\] * [aver(UI32):10]
+\[ATIM(UI64):1543998285921845]\[ATYP\(FC32\):Shea\][ANID(UI32):12281045][ACID(FC32):S3RQ]
+\[ATID(UI64):155524176291717170647261]
+
+====
+를 클릭합니다 `ATYP` 요소(예제에서 밑줄 표시) 메시지를 생성한 이벤트를 식별합니다. 이 예제 메시지에는 가 포함되어 있습니다 link:shea-s3-head.html["셰어"] 메시지 코드([ATYP(FC32):Shea])로, S3 헤드 요청에 의해 생성되었음을 나타냅니다.

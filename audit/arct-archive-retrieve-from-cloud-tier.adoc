@@ -1,0 +1,64 @@
+---
+permalink: audit/arct-archive-retrieve-from-cloud-tier.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ARCT, Archive Retrieve from Cloud-Tier 
+summary: 이 메시지는 S3 API를 통해 StorageGRID에 연결되는 외부 아카이브 스토리지 시스템에서 아카이빙된 오브젝트 데이터를 검색할 때 생성됩니다. 
+---
+= ARCT: 클라우드 계층에서 아카이브 검색
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 S3 API를 통해 StorageGRID에 연결되는 외부 아카이브 스토리지 시스템에서 아카이빙된 오브젝트 데이터를 검색할 때 생성됩니다.
+
+[cols="1a,1a,4a"]
+|===
+| 코드 | 필드에 입력합니다 | 설명 
+
+
+ a| 
+CBID
+ a| 
+콘텐츠 블록 ID입니다
+ a| 
+검색된 콘텐츠 블록의 고유 식별자입니다.
+
+
+
+ a| 
+CSRZ
+ a| 
+콘텐츠 크기
+ a| 
+오브젝트의 크기(바이트)입니다. 이 값은 성공적인 검색 시에만 정확합니다.
+
+
+
+ a| 
+RSLT
+ a| 
+결과 코드
+ a| 
+성공(SUCS) 또는 백엔드에서 보고된 오류를 반환합니다.
+
+
+
+ a| 
+SUID
+ a| 
+스토리지 고유 식별자입니다
+ a| 
+외부 아카이브 스토리지 시스템의 UUID(Unique Identifier)입니다.
+
+
+
+ a| 
+시간
+ a| 
+시간
+ a| 
+요청의 총 처리 시간(마이크로초)입니다.
+
+|===

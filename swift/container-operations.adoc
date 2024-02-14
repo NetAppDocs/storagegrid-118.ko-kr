@@ -1,0 +1,137 @@
+---
+permalink: swift/container-operations.html 
+sidebar: sidebar 
+keywords: swift container operations 
+summary: StorageGRID는 Swift 계정당 최대 1,000개의 컨테이너를 지원합니다. 컨테이너에서 다음과 같은 Swift API 작업이 수행됩니다. 
+---
+= 컨테이너 작업
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID는 Swift 계정당 최대 1,000개의 컨테이너를 지원합니다. 컨테이너에서 다음과 같은 Swift API 작업이 수행됩니다.
+
+
+
+== 컨테이너를 삭제합니다
+
+이 작업을 수행하면 StorageGRID 시스템의 Swift 계정에서 빈 컨테이너가 제거됩니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+* `Container`
+
+
+다음 요청 헤더가 필요합니다.
+
+* `X-Auth-Token`
+
+
+성공적으로 실행하면 "HTTP/1.1 204 컨텐츠 없음" 응답이 있는 다음 헤더가 반환됩니다.
+
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+
+
+== 컨테이너를 가져옵니다
+
+이 작업은 StorageGRID 시스템의 컨테이너 통계 및 메타데이터와 함께 컨테이너와 연결된 개체 목록을 검색합니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+* `Container`
+
+
+다음 요청 헤더가 필요합니다.
+
+* `X-Auth-Token`
+
+
+다음과 같은 지원되는 요청 쿼리 매개 변수는 선택 사항입니다.
+
+* `Delimiter`
+* `End_marker`
+* `Format`
+* `Limit`
+* `Marker`
+* `Path`
+* `Prefix`
+
+
+성공적으로 실행하면 "HTTP/1.1 200 Success" 또는 "HTTP/1.1 204 No Content" 응답으로 다음 헤더가 반환됩니다.
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== 헤드 컨테이너
+
+이 작업은 StorageGRID 시스템에서 컨테이너 통계 및 메타데이터를 검색합니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+* `Container`
+
+
+다음 요청 헤더가 필요합니다.
+
+* `X-Auth-Token`
+
+
+성공적으로 실행하면 "HTTP/1.1 204 컨텐츠 없음" 응답이 있는 다음 헤더가 반환됩니다.
+
+* `Accept-Ranges`
+* `Content-Length`
+* `Date`
+* `X-Container-Bytes-Used`
+* `X-Container-Object-Count`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+
+
+== 용기를 놓습니다
+
+이 작업은 StorageGRID 시스템의 계정에 대한 컨테이너를 만듭니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+* `Container`
+
+
+다음 요청 헤더가 필요합니다.
+
+* `X-Auth-Token`
+
+
+성공적으로 실행하면 "HTTP/1.1 201 Created" 또는 "HTTP/1.1 202 Accepted"(컨테이너가 이미 이 계정에 있는 경우) 응답으로 다음 헤더가 반환됩니다.
+
+* `Content-Length`
+* `Date`
+* `X-Timestamp`
+* `X-Trans-Id`
+
+
+컨테이너 이름은 StorageGRID 네임스페이스에서 고유해야 합니다. 컨테이너가 다른 계정 아래에 있는 경우 "HTTP/1.1 409 충돌"이라는 헤더가 반환됩니다.
+
+.관련 정보
+link:monitoring-and-auditing-operations.html["운영 모니터링 및 감사"]

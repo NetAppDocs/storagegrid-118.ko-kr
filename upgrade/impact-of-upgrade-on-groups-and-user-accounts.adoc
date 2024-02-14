@@ -1,0 +1,35 @@
+---
+permalink: upgrade/impact-of-upgrade-on-groups-and-user-accounts.html 
+sidebar: sidebar 
+keywords: upgrade, permissions 
+summary: 업그레이드가 완료된 후 그룹 및 사용자 계정을 적절히 업데이트해야 할 수 있습니다. 
+---
+= 그룹 및 사용자 계정에 대한 업그레이드의 영향
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+업그레이드가 완료된 후 그룹 및 사용자 계정을 적절히 업데이트해야 할 수 있습니다.
+
+
+
+== 그룹 권한 및 옵션에 대한 변경
+
+StorageGRID 11.8로 업그레이드한 후 필요에 따라 다음과 같은 새 권한을 테넌트 사용자 그룹에 할당합니다.
+
+[cols="1a,2a,2a"]
+|===
+| 권한 | 설명 | 세부 정보 
+
+
+ a| 
+모든 버킷을 봅니다
+ a| 
+모든 버킷 및 버킷 구성을 볼 수 있습니다.
+ a| 
+모든 버킷 관리 권한은 모든 버킷 보기 권한보다 우선합니다.
+
+|===
+을 참조하십시오 link:../tenant/tenant-management-permissions.html["테넌트 관리 권한"].

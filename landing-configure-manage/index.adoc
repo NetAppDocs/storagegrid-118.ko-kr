@@ -1,0 +1,13 @@
+---
+layout: landing-page 
+sidebar: sidebar 
+permalink: landing-configure-manage/index.html 
+summary: 새 StorageGRID 시스템에 대해 수행해야 하는 구성 작업은 그리드 사용 방법에 따라 다릅니다. 최소한 시스템 액세스를 설정하고, FabricPool 및 S3 마법사를 사용하고, 다양한 스토리지 및 보안 설정을 관리합니다. 
+---
+= StorageGRID 시스템을 구성하고 관리합니다
+:hardbreaks:
+:allow-uri-read: 
+:linkattrs: 
+:imagesdir: ./media/
+
+

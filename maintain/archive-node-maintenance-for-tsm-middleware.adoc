@@ -1,0 +1,229 @@
+---
+permalink: maintain/archive-node-maintenance-for-tsm-middleware.html 
+sidebar: sidebar 
+keywords: storagegrid, archive node, tsm, tsm middleware, middleware 
+summary: 아카이브 노드는 TSM 미들웨어 서버를 통해 테이프나 S3 API를 통해 클라우드로 대상을 겨냥하도록 구성할 수 있습니다. 구성이 완료되면 아카이브 노드 타겟을 변경할 수 없습니다. 
+---
+= TSM 미들웨어를 위한 아카이브 노드 유지 보수
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+아카이브 노드는 TSM 미들웨어 서버를 통해 테이프나 S3 API를 통해 클라우드로 대상을 겨냥하도록 구성할 수 있습니다. 구성이 완료되면 보관 노드의 대상을 변경할 수 없습니다.
+
+보관 노드를 호스팅하는 서버에 오류가 발생하면 서버를 교체하고 적절한 복구 절차를 따릅니다.
+
+
+
+== 보관 저장 장치에 결함이 있습니다
+
+아카이브 노드가 TSM(Tivoli Storage Manager)을 통해 액세스하는 아카이브 스토리지 디바이스에 장애가 있는 경우 아카이브 노드를 오프라인으로 전환하여 StorageGRID 시스템에 표시되는 알람 수를 제한합니다. 그런 다음 TSM 서버 또는 스토리지 디바이스의 관리 툴을 사용하거나 둘 모두를 사용하여 문제를 추가로 진단하고 해결할 수 있습니다.
+
+
+
+=== 대상 구성 요소를 오프라인으로 전환합니다
+
+TSM 미들웨어 서버를 Archive Node에서 사용할 수 없게 될 수 있는 TSM 미들웨어 서버를 유지 관리하기 전에 Target 구성 요소를 오프라인으로 전환하여 TSM 미들웨어 서버를 사용할 수 없게 될 경우 트리거되는 알람 수를 제한합니다.
+
+.시작하기 전에
+를 사용하여 그리드 관리자에 로그인했습니다 link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"].
+
+.단계
+. 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+. Archive Node * > * ARC * > * Target * > * Configuration * > * Main * 을 선택합니다.
+. Tivoli Storage Manager State의 값을 * Offline * 으로 변경하고 * Apply Changes * 를 클릭합니다.
+. 유지 관리가 완료되면 Tivoli Storage Manager State의 값을 * Online * 으로 변경하고 * Apply Changes * 를 클릭합니다.
+
+
+
+
+== Tivoli Storage Manager 관리 툴
+
+dsmadmc 툴은 아카이브 노드에 설치된 TSM 미들웨어 서버의 관리 콘솔입니다. 을 입력하여 도구에 액세스할 수 있습니다 `dsmadmc` 서버의 명령줄에 입력합니다. ARC 서비스에 대해 구성된 것과 동일한 관리 사용자 이름과 암호를 사용하여 관리 콘솔에 로그인합니다.
+
+를 클릭합니다 `tsmquery.rb` dsmadmc에서 보다 읽기 쉬운 형식으로 상태 정보를 생성하기 위해 스크립트가 생성되었습니다. 아카이브 노드의 명령줄에 다음 명령을 입력하여 이 스크립트를 실행할 수 있습니다. `/usr/local/arc/tsmquery.rb status`
+
+TSM 관리 콘솔 dsmadmc에 대한 자세한 내용은 _Tivoli Storage Manager for Linux: AdministratorNAC's Reference_를 참조하십시오.
+
+
+
+== 개체를 영구적으로 사용할 수 없습니다
+
+아카이브 노드가 TSM(Tivoli Storage Manager) 서버에서 객체를 요청하고 검색에 실패하면 아카이브 노드는 10초 간격으로 요청을 재시도합니다. 객체가 영구적으로 사용 불가능한 경우(예: 객체가 테이프에서 손상되었기 때문에) TSM API가 이를 아카이브 노드에 표시할 방법이 없으므로 아카이브 노드가 요청을 계속 재시도합니다.
+
+이 상황이 발생하면 알람이 트리거되고 값이 계속 증가합니다. 경보를 보려면 * 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다. 그런 다음 * Archive Node * > * ARC * > * Retrieve * > * Request Failures * 를 선택합니다.
+
+개체를 영구적으로 사용할 수 없는 경우 개체를 식별한 다음 절차에 설명된 대로 아카이브 노드의 요청을 수동으로 취소해야 합니다. <<determining_objects_permanently_unavailable,개체를 영구적으로 사용할 수 있는지 여부를 확인합니다>>.
+
+개체를 일시적으로 사용할 수 없는 경우에도 검색이 실패할 수 있습니다. 이 경우 후속 검색 요청이 성공해야 합니다.
+
+StorageGRID 시스템이 단일 오브젝트 복사본을 생성하는 ILM 규칙을 사용하도록 구성되어 있고 해당 복사본을 검색할 수 없는 경우 개체가 손실되어 복구할 수 없습니다. 그러나 이 절차에 따라 StorageGRID 시스템을 "정리"할 수 없는 개체를 영구적으로 사용할 수 있는지 확인하고, 아카이브 노드의 요청을 취소하고, 손실된 개체에 대한 메타데이터를 제거해야 합니다.
+
+
+
+=== 개체를 영구적으로 사용할 수 있는지 여부를 확인합니다
+
+TSM 관리 콘솔을 사용하여 요청을 수행하면 객체를 영구적으로 사용할 수 없는지 확인할 수 있습니다.
+
+.시작하기 전에
+* 있습니다 link:../admin/admin-group-permissions.html["특정 액세스 권한"].
+* 을(를) 보유하고 있습니다 `Passwords.txt` 파일.
+* 관리 노드의 IP 주소가 있습니다.
+
+
+.이 작업에 대해
+이 예제는 사용자 정보에 대해 제공됩니다. 이 절차는 사용할 수 없는 개체 또는 테이프 볼륨을 초래할 수 있는 모든 실패 조건을 식별하는 데 도움이 되지 않습니다. TSM 관리에 대한 자세한 내용은 TSM Server 설명서를 참조하십시오.
+
+.단계
+. 관리자 노드에 로그인:
++
+.. 다음 명령을 입력합니다. `ssh admin@Admin_Node_IP`
+.. 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
+
+
+. 아카이브 노드에서 검색할 수 없는 객체 식별:
++
+.. 감사 로그 파일이 포함된 디렉토리로 이동합니다. `cd /var/local/log`
++
+활성 감사 로그 파일의 이름은 audit.log입니다. 하루에 한 번, 활동입니다 `audit.log` 파일이 저장되고 새 파일이 저장됩니다 `audit.log` 파일이 시작되었습니다. 저장된 파일의 이름은 저장 시기를 형식으로 나타냅니다 `yyyy-mm-dd.txt`. 하루 후에는 저장된 파일이 압축되고 이름이 파일 형식으로 변경됩니다 `yyyy-mm-dd.txt.gz`원래 날짜를 유지합니다.
+
+.. 관련 감사 로그 파일에서 보관된 개체를 검색할 수 없음을 나타내는 메시지를 검색합니다. 예를 들어 다음을 입력합니다. `grep ARCE audit.log | less -n`
++
+아카이브 노드에서 객체를 검색할 수 없는 경우 ARCE 감사 메시지(아카이브 객체 검색 종료)에 결과 필드에 Arun(아카이브 미들웨어를 사용할 수 없음) 또는 GERR(일반 오류)이 표시됩니다. 감사 로그의 다음 예제 줄은 CBID 498D8A1F681F05B3에 대한 결과 Arun로 ARCE 메시지가 종료되었음을 보여 줍니다.
+
++
+[listing]
+----
+[AUDT:[CBID(UI64):0x498D8A1F681F05B3][VLID(UI64):20091127][RSLT(FC32):ARUN][AVER(UI32):7]
+[ATIM(UI64):1350613602969243][ATYP(FC32):ARCE][ANID(UI32):13959984][AMID(FC32):ARCI]
+[ATID(UI64):4560349751312520631]]
+----
++
+자세한 내용은 감사 메시지 이해를 위한 지침을 참조하십시오.
+
+.. 요청 실패가 발생한 각 객체의 CBID를 기록합니다.
++
+TSM에서 아카이브 노드에 의해 저장된 객체를 식별하는 데 사용하는 다음과 같은 추가 정보를 기록할 수도 있습니다.
+
++
+*** * 파일 공간 이름 *: 아카이브 노드 ID와 동일합니다. 아카이브 노드 ID를 찾으려면 * 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다. 그런 다음 * Archive Node * > * ARC * > * Target * > * Overview * 를 선택합니다.
+*** * 상위 수준 이름 *: 아카이브 노드에서 객체에 할당한 볼륨 ID와 동일합니다. 볼륨 ID는 날짜 형식을 사용합니다(예: `20091127`)로, 및 가 아카이브 감사 메시지에 객체의 VLID로 기록됩니다.
+*** * 낮은 수준 이름 *: StorageGRID 시스템에서 개체에 할당한 CBID와 같습니다.
+
+
+.. 명령 셸에서 로그아웃합니다. `exit`
+
+
+. TSM 서버에서 2단계에서 식별된 객체를 영구적으로 사용할 수 없는지 확인합니다.
++
+.. TSM 서버의 관리 콘솔에 로그인합니다. `dsmadmc`
++
+ARC 서비스에 대해 구성된 관리 사용자 이름과 암호를 사용합니다. Grid Manager(그리드 관리자)에 사용자 이름과 암호를 입력합니다. (사용자 이름을 보려면 * 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다. 그런 다음 * Archive Node * > * ARC * > * Target * > * Configuration * 을 선택합니다.)
+
+.. 개체를 영구적으로 사용할 수 없는지 확인합니다.
++
+예를 들어 TSM 작업 로그에서 해당 객체에 대한 데이터 무결성 오류를 검색할 수 있습니다. 다음 예에서는 CBID가 있는 객체에 대한 지난 날짜의 활동 로그 검색을 보여 줍니다 `498D8A1F681F05B3`.
+
++
+[listing]
+----
+> query actlog begindate=-1 search=276C14E94082CC69
+12/21/2008 05:39:15 ANR0548W Retrieve or restore
+failed for session 9139359 for node DEV-ARC-20 (Bycast ARC)
+processing file space /19130020 4 for file /20081002/
+498D8A1F681F05B3 stored as Archive - data
+integrity error detected. (SESSION: 9139359)
+>
+----
++
+오류의 특성에 따라 TSM 작업 로그에 CBID가 기록되지 않을 수 있습니다. 요청 실패 시 로그에서 다른 TSM 오류를 검색해야 할 수 있습니다.
+
+.. 전체 테이프를 영구적으로 사용할 수 없는 경우 해당 볼륨에 저장된 모든 개체의 CBID를 식별합니다. `query content TSM_Volume_Name`
++
+위치 `TSM_Volume_Name` 사용할 수 없는 테이프의 TSM 이름입니다. 다음은 이 명령의 출력 예입니다.
+
++
+[listing]
+----
+ > query content TSM-Volume-Name
+Node Name     Type Filespace  FSID Client's Name for File Name
+------------- ---- ---------- ---- ----------------------------
+DEV-ARC-20    Arch /19130020  216  /20081201/ C1D172940E6C7E12
+DEV-ARC-20    Arch /19130020  216  /20081201/ F1D7FBC2B4B0779E
+----
++
+를 클릭합니다 `Client’s Name for File Name` 는 아카이브 노드 볼륨 ID(또는 TSM "상위 수준 이름") 다음에 개체의 CBID(또는 TSM "하위 수준 이름")와 동일합니다. 즉, 입니다 `Client’s Name for File Name` 양식을 작성합니다 `/Archive Node volume ID /CBID`. 예제 출력의 첫 번째 줄에서 를 참조하십시오 `Client’s Name for File Name` 있습니다 `/20081201/ C1D172940E6C7E12`.
+
++
+또한 를 상기하십시오 `Filespace` 는 아카이브 노드의 노드 ID입니다.
+
++
+검색 요청을 취소하려면 볼륨에 저장된 각 개체의 CBID와 아카이브 노드의 노드 ID가 필요합니다.
+
+
+
+. 영구적으로 사용할 수 없는 각 개체에 대해 검색 요청을 취소하고 명령을 실행하여 StorageGRID 시스템에 개체 복사본이 손실되었음을 알립니다.
++
+
+CAUTION: ADE 콘솔을 주의하여 사용하십시오. 콘솔을 잘못 사용하면 시스템 작업을 중단하거나 데이터가 손상될 수 있습니다. 명령을 신중하게 입력하고 이 절차에 설명된 명령만 사용하십시오.
+
++
+.. 아카이브 노드에 아직 로그인하지 않은 경우 다음과 같이 로그인합니다.
++
+... 다음 명령을 입력합니다. `ssh admin@_grid_node_IP_`
+... 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
+... 루트로 전환하려면 다음 명령을 입력합니다. `su -`
+... 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
+
+
+.. ARC 서비스의 ADE 콘솔에 액세스합니다. `telnet localhost 1409`
+.. 객체에 대한 요청을 취소합니다. `/proc/BRTR/cancel -c CBID`
++
+위치 `CBID` TSM에서 검색할 수 없는 객체의 식별자입니다.
+
++
+객체의 복제본만 테이프에 있는 경우 "1개의 요청이 취소됨" 메시지와 함께 "대량 검색" 요청이 취소됩니다. 객체의 복사본이 시스템의 다른 위치에 있는 경우 객체 검색이 다른 모듈에 의해 처리되므로 메시지에 대한 응답은 "0 requests cancelled"가 됩니다.
+
+.. 명령을 실행하여 StorageGRID 시스템에 개체 복사본이 손실되었으며 추가 복사본이 만들어져야 함을 알립니다. `/proc/CMSI/Object_Lost CBID node_ID`
++
+위치 `CBID` TSM 서버에서 검색할 수 없는 객체의 식별자이며 `node_ID` 검색이 실패한 아카이브 노드의 노드 ID입니다.
+
++
+손실된 각 개체 복사본에 대해 별도의 명령을 입력해야 합니다. CBID 범위를 입력하는 것은 지원되지 않습니다.
+
++
+대부분의 경우 StorageGRID 시스템은 시스템의 ILM 정책을 따르기 위해 즉시 오브젝트 데이터의 추가 복사본을 만들기 시작합니다.
+
++
+하지만 개체에 대한 ILM 규칙이 복사본을 하나만 만들고 해당 복사본이 손실되었다고 지정한 경우 개체를 복구할 수 없습니다. 이 경우 를 실행합니다 `Object_Lost` 명령은 StorageGRID 시스템에서 손실된 개체의 메타데이터를 지웁니다.
+
++
+를 누릅니다 `Object_Lost` 명령이 성공적으로 완료되면 다음 메시지가 반환됩니다.
+
++
+[listing]
+----
+CLOC_LOST_ANS returned result ‘SUCS’
+----
++
+
+NOTE: 를 클릭합니다 `/proc/CMSI/Object_Lost` 명령은 아카이브 노드에 저장된 손실된 개체에 대해서만 유효합니다.
+
+.. ADE 콘솔을 종료합니다. `exit`
+.. 아카이브 노드에서 로그아웃합니다. `exit`
+
+
+. StorageGRID 시스템에서 요청 실패 값을 재설정합니다.
++
+.. Archive Node * > * ARC * > * Retrieve * > * Configuration * 으로 이동하여 * Reset Request Failure Count * 를 선택합니다.
+.. 변경 내용 적용 * 을 클릭합니다.
+
+
+
+
+.관련 정보
+link:../admin/index.html["StorageGRID 관리"]
+
+link:../audit/index.html["감사 로그를 검토합니다"]

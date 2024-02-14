@@ -1,0 +1,59 @@
+---
+permalink: admin/managing-archive-node-when-tsm-server-reaches-capacity.html 
+sidebar: sidebar 
+keywords: archive node, tsm server, full capacity, node is full 
+summary: TSM 서버에서 관리하는 TSM 데이터베이스나 아카이브 미디어 스토리지가 용량에 근접하는 경우 TSM 서버에서 아카이브 노드를 알릴 수 없습니다. TSM 서버의 사전 모니터링을 통해 이러한 상황을 방지할 수 있습니다. 
+---
+= TSM 서버가 용량에 도달하면 아카이브 노드를 관리합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+TSM 서버에서 관리하는 TSM 데이터베이스나 아카이브 미디어 스토리지가 용량에 근접하는 경우 TSM 서버에서 아카이브 노드를 알릴 수 없습니다. TSM 서버의 사전 모니터링을 통해 이러한 상황을 방지할 수 있습니다.
+
+.시작하기 전에
+* 를 사용하여 그리드 관리자에 로그인했습니다 link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"].
+* 있습니다 link:admin-group-permissions.html["특정 액세스 권한"].
+
+
+.이 작업에 대해
+아카이브 노드는 TSM 서버가 새 컨텐츠 수신을 중지한 후에도 TSM 서버로 전송하기 위한 객체 데이터를 계속 수락합니다. 이 콘텐츠는 TSM 서버에서 관리하는 미디어에 쓸 수 없습니다. 이 경우 알람이 트리거됩니다.
+
+
+
+== ARC 서비스가 TSM 서버로 콘텐츠를 전송하지 않도록 합니다
+
+ARC 서비스가 TSM 서버로 추가 콘텐츠를 전송하지 않도록 하려면 * ARC * > * Store * 구성 요소를 오프라인으로 전환하여 아카이브 노드를 오프라인으로 전환할 수 있습니다. 이 절차는 TSM 서버를 유지 보수할 수 없는 경우 알람을 방지하는 데에도 유용할 수 있습니다.
+
+.단계
+. 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+. Archive Node_ * > * ARC * > * Store * 를 선택합니다.
+. Configuration * > * Main * 을 선택합니다.
++
+image::../media/tsm_offline.gif[아카이브 노드의 구성 페이지입니다]
+
+. Store State * 를 로 변경합니다 `Offline`.
+. 시작 시 * 아카이브 저장소 사용 안 함 * 을 선택합니다.
+. Apply Changes * 를 선택합니다.
+
+
+
+
+== TSM 미들웨어가 용량에 도달하면 아카이브 노드를 읽기 전용으로 설정합니다
+
+대상 TSM 미들웨어 서버가 용량에 도달하면 아카이브 노드를 최적화하여 검색을 수행할 수 있습니다.
+
+.단계
+. 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+. Archive Node_ * > * ARC * > * Target * 을 선택합니다.
+. Configuration * > * Main * 을 선택합니다.
+. 최대 검색 세션을 세션 수에 나열된 동시 세션 수와 동일하게 변경합니다.
+. 최대 저장 세션을 0으로 변경합니다.
++
+
+NOTE: 아카이브 노드가 읽기 전용인 경우 최대 저장소 세션을 0으로 변경할 필요가 없습니다. 저장 세션이 생성되지 않습니다.
+
+. Apply Changes * 를 선택합니다.
+

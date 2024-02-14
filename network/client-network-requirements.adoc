@@ -1,0 +1,18 @@
+---
+permalink: network/client-network-requirements.html 
+sidebar: sidebar 
+keywords: client network 
+summary: 클라이언트 네트워크는 선택 사항입니다. 클라이언트 네트워크를 구성하려는 경우 다음 고려 사항에 유의하십시오. 
+---
+= 클라이언트 네트워크 요구 사항
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+클라이언트 네트워크는 선택 사항입니다. 클라이언트 네트워크를 구성하려는 경우 다음 고려 사항에 유의하십시오.
+
+클라이언트 네트워크는 S3 및 Swift 클라이언트의 트래픽을 지원하도록 설계되었습니다. 구성된 경우 클라이언트 네트워크 게이트웨이는 노드의 기본 게이트웨이가 됩니다.
+
+클라이언트 네트워크를 사용하는 경우 명시적으로 구성된 로드 밸런서 끝점에서만 인바운드 클라이언트 트래픽을 허용하여 악의적인 공격으로부터 StorageGRID를 보호할 수 있습니다. 을 참조하십시오 link:../admin/manage-firewall-controls.html["방화벽 제어 관리"] 및 link:../admin/configuring-load-balancer-endpoints.html["로드 밸런서 엔드포인트를 구성합니다"].

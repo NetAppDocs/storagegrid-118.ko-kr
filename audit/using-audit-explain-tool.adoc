@@ -1,0 +1,98 @@
+---
+permalink: audit/using-audit-explain-tool.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, tool, audit-explain, audit explain, translate audit messages, translate messages, translate audit message, translate message 
+summary: 감사 설명 도구를 사용하여 감사 로그의 감사 메시지를 읽기 쉬운 형식으로 변환할 수 있습니다. 
+---
+= 감사 설명 도구를 사용합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+를 사용할 수 있습니다 `audit-explain` 감사 로그의 감사 메시지를 읽기 쉬운 형식으로 변환하는 도구입니다.
+
+.시작하기 전에
+* 있습니다 link:../admin/admin-group-permissions.html["특정 액세스 권한"].
+* 에 가 있어야 합니다 `Passwords.txt` 파일.
+* 기본 관리 노드의 IP 주소를 알아야 합니다.
+
+
+.이 작업에 대해
+를 클릭합니다 `audit-explain` 기본 관리 노드에서 사용할 수 있는 도구는 감사 로그의 감사 메시지에 대한 간단한 요약을 제공합니다.
+
+
+NOTE: 를 클릭합니다 `audit-explain` 도구는 주로 문제 해결 작업 중에 기술 지원 부서에서 사용하도록 설계되었습니다. 처리 중입니다 `audit-explain` 쿼리는 많은 양의 CPU 성능을 소모하여 StorageGRID 작업에 영향을 줄 수 있습니다.
+
+이 예는 의 일반적인 출력을 보여줍니다 `audit-explain` 도구. 요거 네네 link:sput-s3-put.html["SPUT"] 계정 ID 924847777680322627870이 있는 S3 테넌트가 S3 PUT 요청을 사용하여 "bucket1"이라는 이름의 버킷을 생성하고 해당 버켓에 세 개의 오브젝트를 추가할 때 감사 메시지가 생성되었습니다.
+
+[listing]
+----
+SPUT S3 PUT bucket bucket1 account:92484777680322627870 usec:124673
+SPUT S3 PUT object bucket1/part1.txt tenant:92484777680322627870  cbid:9DCB157394F99FE5 usec:101485
+SPUT S3 PUT object bucket1/part2.txt tenant:92484777680322627870  cbid:3CFBB07AB3D32CA9 usec:102804
+SPUT S3 PUT object bucket1/part3.txt tenant:92484777680322627870  cbid:5373D73831ECC743 usec:93874
+----
+를 클릭합니다 `audit-explain` 도구는 다음을 수행할 수 있습니다.
+
+* 일반 또는 압축 감사 로그를 처리합니다. 예를 들면 다음과 같습니다.
++
+`audit-explain audit.log`
+
++
+`audit-explain 2019-08-12.txt.gz`
+
+* 여러 파일을 동시에 처리합니다. 예를 들면 다음과 같습니다.
++
+`audit-explain audit.log 2019-08-12.txt.gz 2019-08-13.txt.gz`
+
++
+`audit-explain /var/local/log/*`
+
+* 파이프에서 입력을 받아 을 사용하여 입력을 필터링하고 사전 처리할 수 있습니다 `grep` 명령 또는 기타 방법. 예를 들면 다음과 같습니다.
++
+`grep SPUT audit.log | audit-explain`
+
++
+`grep bucket-name audit.log | audit-explain`
+
+
+
+감사 로그는 매우 크고 구문 분석 속도가 느릴 수 있으므로 보고 실행할 부분을 필터링하여 시간을 절약할 수 있습니다 `audit-explain` 전체 파일 대신 파트에서.
+
+[NOTE]
+====
+를 클릭합니다 `audit-explain` 도구는 압축된 파일을 파이프된 입력으로 허용하지 않습니다. 압축된 파일을 처리하려면 파일 이름을 명령줄 인수로 제공하거나 를 사용합니다 `zcat` 먼저 파일의 압축을 푸는 도구입니다. 예를 들면 다음과 같습니다.
+
+`zcat audit.log.gz | audit-explain`
+
+====
+를 사용합니다 `help (-h)` 옵션을 클릭하여 사용 가능한 옵션을 표시합니다. 예를 들면 다음과 같습니다.
+
+`$ audit-explain -h`
+
+.단계
+. 기본 관리자 노드에 로그인합니다.
++
+.. 다음 명령을 입력합니다. `ssh admin@_primary_Admin_Node_IP_`
+.. 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
+.. 루트로 전환하려면 다음 명령을 입력합니다. `su -`
+.. 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
++
+루트로 로그인하면 프롬프트가 에서 변경됩니다 `$` 를 선택합니다 `#`.
+
+
+
+. 다음 명령을 입력합니다. 여기서 `/var/local/log/audit.log` 분석할 파일의 이름과 위치를 나타냅니다.
++
+`$ audit-explain /var/local/log/audit.log`
+
++
+를 클릭합니다 `audit-explain` 도구는 지정된 파일 또는 파일의 모든 메시지에 대해 사람이 읽을 수 있는 해석을 인쇄합니다.
+
++
+
+NOTE: 선 길이를 줄이고 가독성을 높이기 위해 타임스탬프가 기본적으로 표시되지 않습니다. 타임스탬프를 보려면 타임스탬프를 사용합니다 (`-t`) 옵션을 선택합니다.
+
+

@@ -1,0 +1,86 @@
+---
+permalink: swift/configuring-tenant-accounts-and-connections.html 
+sidebar: sidebar 
+keywords: swift test connection, cli, python-swiftclient 
+summary: Swift CLI를 사용하여 StorageGRID 시스템에 대한 연결을 테스트하고 개체를 읽고 쓸 수 있는지 확인할 수 있습니다. 
+---
+= Swift REST API 구성을 테스트합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Swift CLI를 사용하여 StorageGRID 시스템에 대한 연결을 테스트하고 개체를 읽고 쓸 수 있는지 확인할 수 있습니다.
+
+.시작하기 전에
+* Swift 명령줄 클라이언트를 다운로드하여 설치했습니다. https://platform.swiftstack.com/docs/integration/python-swiftclient.html["SwiftStack:python-swiftclient"^]
+* 필요한 경우 가 있습니다 link:../admin/configuring-load-balancer-endpoints.html["로드 밸런서 끝점을 생성했습니다"]. 그렇지 않으면 연결할 스토리지 노드의 IP 주소와 사용할 포트 번호를 알 수 있습니다. 을 참조하십시오 link:../admin/summary-ip-addresses-and-ports-for-client-connections.html["클라이언트 연결용 IP 주소 및 포트"].
+* 있습니다 link:../admin/creating-tenant-account.html["Swift 테넌트 계정을 생성했습니다"].
+* 테넌트 계정에 로그인하여 하나 이상의 그룹 및 사용자를 생성했습니다. 을 참조하십시오 link:../tenant/creating-groups-for-swift-tenant.html["Swift 테넌트의 그룹을 생성합니다"].
++
+
+NOTE: Swift REST API를 인증하려면 Swift 테넌트 사용자에게 관리자 그룹 권한이 있어야 합니다.
+
+
+
+.이 작업에 대해
+보안을 구성하지 않은 경우 을 추가해야 합니다 `--insecure` 이러한 각 명령에 플래그를 지정합니다.
+
+.단계
+. StorageGRID Swift 배포에 대한 정보 URL 쿼리:
++
+[listing]
+----
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/info
+capabilities
+----
++
+이는 Swift 배포가 제대로 작동하는지 테스트하는 데 충분합니다. 객체를 저장하여 계정 구성을 추가로 테스트하려면 추가 단계를 계속 진행합니다.
+
+. 컨테이너에 개체 넣기:
++
+[listing]
+----
+touch test_object
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/auth/v1.0
+upload test_container test_object
+--object-name test_object
+----
+. 컨테이너를 내려 개체를 확인합니다.
++
+[listing]
+----
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/auth/v1.0
+list test_container
+----
+. 개체 삭제:
++
+[listing]
+----
+swift
+-U <Tenant_Account_ID:Account_User_Name>
+-K <User_Password>
+-A https://<FQDN | IP>:<Port>/auth/v1.0
+delete test_container test_object
+----
+. 컨테이너를 삭제합니다.
++
+[listing]
+----
+swift
+-U `<_Tenant_Account_ID:Account_User_Name_>`
+-K `<_User_Password_>`
+-A `\https://<_FQDN_ | _IP_>:<_Port_>/auth/v1.0'
+delete test_container
+----
+

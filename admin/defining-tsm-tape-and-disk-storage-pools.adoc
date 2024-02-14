@@ -1,0 +1,135 @@
+---
+permalink: admin/defining-tsm-tape-and-disk-storage-pools.html 
+sidebar: sidebar 
+keywords: archive node, tsm, tape storage pool, tivoli storage manager 
+summary: 아카이브 노드는 디스크 스토리지 풀에 씁니다. 콘텐츠를 테이프에 아카이빙하려면 테이프 스토리지 풀로 콘텐츠를 이동하도록 디스크 스토리지 풀을 구성해야 합니다. 
+---
+= TSM 테이프 및 디스크 스토리지 풀을 정의합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+아카이브 노드는 디스크 스토리지 풀에 씁니다. 콘텐츠를 테이프에 아카이빙하려면 테이프 스토리지 풀로 콘텐츠를 이동하도록 디스크 스토리지 풀을 구성해야 합니다.
+
+.이 작업에 대해
+TSM 서버의 경우 Tivoli Storage Manager 내에서 테이프 스토리지 풀과 디스크 스토리지 풀을 정의해야 합니다. 디스크 풀을 정의한 후 디스크 볼륨을 생성하여 디스크 풀에 할당합니다. TSM 서버에서 디스크 전용 스토리지를 사용하는 경우에는 테이프 풀이 필요하지 않습니다.
+
+테이프 스토리지 풀을 생성하려면 TSM 서버에서 몇 가지 단계를 완료해야 합니다. 테이프 라이브러리와 테이프 라이브러리에 하나 이상의 드라이브를 만듭니다. 서버에서 라이브러리까지, 서버에서 드라이브까지 경로를 정의한 다음 드라이브의 디바이스 클래스를 정의합니다.) 이러한 단계에 대한 자세한 내용은 사이트의 하드웨어 구성 및 스토리지 요구 사항에 따라 다를 수 있습니다. 자세한 내용은 TSM 설명서를 참조하십시오.
+
+다음 지침은 프로세스를 보여 줍니다. 사이트 요구 사항은 배포 요구 사항에 따라 다를 수 있습니다. 구성 세부 정보 및 지침은 TSM 설명서를 참조하십시오.
+
+
+NOTE: 관리자 권한으로 서버에 로그인하고 dsmadmc 도구를 사용하여 다음 명령을 실행해야 합니다.
+
+.단계
+. 테이프 라이브러리를 생성합니다.
++
+`define library _tapelibrary_ libtype=_scsi_`
+
++
+위치 `_tapelibrary_` 테이프 라이브러리에 대해 선택한 임의 이름이며 의 값입니다 `libtype` 테이프 라이브러리의 유형에 따라 달라질 수 있습니다.
+
+. 서버에서 테이프 라이브러리로의 경로를 정의합니다.
++
+`define path _servername tapelibrary_ srctype=server desttype=library device=_lib-devicename_`
+
++
+** `_servername_` TSM 서버의 이름입니다
+** `_tapelibrary_` 정의한 테이프 라이브러리 이름입니다
+** `_lib-devicename_` 테이프 라이브러리의 디바이스 이름입니다
+
+
+. 라이브러리의 드라이브를 정의합니다.
++
+`define drive _tapelibrary_ _drivename_`
+
++
+** `_drivename_` 드라이브에 지정할 이름입니다
+** `_tapelibrary_` 정의한 테이프 라이브러리 이름입니다
++
+하드웨어 구성에 따라 추가 드라이브 또는 드라이브를 구성할 수 있습니다. 예를 들어 TSM 서버가 테이프 라이브러리에서 두 개의 입력이 있는 Fibre Channel 스위치에 연결되어 있는 경우 각 입력에 대해 드라이브를 정의할 수 있습니다.
+
+
+
+. 서버에서 정의한 드라이브까지의 경로를 정의합니다.
++
+`define path _servername_ drivename srctype=server desttype=drive library=_tapelibrary_ device=_drive-dname_`
+
++
+** `_drive-dname_` 드라이브의 장치 이름입니다
+** `_tapelibrary_` 정의한 테이프 라이브러리 이름입니다
++
+테이프 라이브러리에 대해 정의한 각 드라이브에 대해 별도의 를 사용하여 이 과정을 반복합니다 `_drivename_` 및 `_drive-dname_` 각 드라이브에 대해.
+
+
+
+. 드라이브의 디바이스 클래스를 정의합니다.
++
+`define devclass _DeviceClassName_ devtype=_lto_ library=_tapelibrary_ format=_tapetype_`
+
++
+** `_DeviceClassName_` 디바이스 클래스의 이름입니다
+** `_lto_` 서버에 연결된 드라이브 유형입니다
+** `_tapelibrary_` 정의한 테이프 라이브러리 이름입니다
+** `_tapetype_` 은 테이프 유형입니다(예: ul3um3)
+
+
+. 라이브러리의 인벤토리에 테이프 볼륨을 추가합니다.
++
+`checkin libvolume _tapelibrary_`
+
++
+`_tapelibrary_` 정의한 테이프 라이브러리 이름입니다.
+
+. 운영 테이프 스토리지 풀을 생성합니다.
++
+`define stgpool _SGWSTapePool_ _DeviceClassName_ description=_description_ _collocate=filespace_ maxscratch=_XX_`
+
++
+** `_SGWSTapePool_` 아카이브 노드의 테이프 스토리지 풀의 이름입니다. 이름이 TSM 서버에서 예상하는 구문 규칙을 사용하는 경우 테이프 스토리지 풀의 이름을 선택할 수 있습니다.
+** `_DeviceClassName_` 테이프 라이브러리의 디바이스 클래스 이름입니다.
+** `_description_` 은 를 사용하여 TSM 서버에 표시할 수 있는 스토리지 풀에 대한 설명입니다 `query stgpool` 명령. 예: "아카이브 노드용 테이프 스토리지 풀."
+** `_collocate=filespace_` TSM 서버가 동일한 파일 공간의 객체를 단일 테이프에 기록하도록 지정합니다.
+** `XX` 다음 중 하나입니다.
++
+*** 테이프 라이브러리의 빈 테이프 수(라이브러리를 사용하는 유일한 애플리케이션인 경우)
+*** StorageGRID 시스템에서 사용하도록 할당된 테이프 수(테이프 라이브러리가 공유되는 경우)
+
+
+
+
+. TSM 서버에서 디스크 스토리지 풀을 생성합니다. TSM 서버의 관리 콘솔에서 를 입력합니다
++
+`define stgpool _SGWSDiskPool_ disk description=_description_ maxsize=_maximum_file_size nextstgpool=SGWSTapePool_ highmig=_percent_high_ lowmig=_percent_low_`
+
++
+** `_SGWSDiskPool_` 아카이브 노드의 디스크 풀의 이름입니다. 이름이 TSM에서 예상하는 구문 규칙을 사용하는 경우 디스크 스토리지 풀의 이름을 선택할 수 있습니다.
+** `_description_` 은 를 사용하여 TSM 서버에 표시할 수 있는 스토리지 풀에 대한 설명입니다 `query stgpool` 명령. 예: "아카이브 노드용 디스크 스토리지 풀"입니다.
+**  `_maximum_file_size_` 디스크 풀에 캐싱되지 않고 이 크기보다 큰 오브젝트를 테이프에 직접 기록합니다. 를 설정하는 것이 좋습니다 `_maximum_file_size_` 10GB로 설정합니다.
+** `_nextstgpool=SGWSTapePool_` 디스크 스토리지 풀을 아카이브 노드에 대해 정의된 테이프 스토리지 풀로 나타냅니다.
+**  `_percent_high_` 디스크 풀의 내용을 테이프 풀로 마이그레이션하기 시작하는 값을 설정합니다. 를 설정하는 것이 좋습니다 `_percent_high_` 0으로 지정하면 데이터 마이그레이션이 즉시 시작됩니다
+**  `_percent_low_` 테이프 풀로의 마이그레이션이 중지되는 값을 설정합니다. 를 설정하는 것이 좋습니다 `_percent_low_` 를 0으로 눌러 디스크 풀을 지웁니다.
+
+
+. TSM 서버에서 디스크 볼륨(또는 볼륨)을 생성하여 디스크 풀에 할당합니다.
++
+`define volume _SGWSDiskPool_ _volume_name_ formatsize=_size_`
+
++
+** `_SGWSDiskPool_` 디스크 풀 이름입니다.
+** `_volume_name_` 볼륨 위치에 대한 전체 경로입니다(예: `/var/local/arc/stage6.dsm`) TSM 서버에서 테이프 전송을 준비하기 위해 디스크 풀의 내용을 기록합니다.
+** `_size_` 디스크 볼륨의 크기(MB)입니다.
++
+예를 들어, 디스크 풀의 컨텐츠가 단일 테이프를 채우도록 단일 디스크 볼륨을 생성하려면 테이프 볼륨의 용량이 200GB인 경우 크기 값을 200000으로 설정합니다.
+
++
+그러나 TSM 서버가 디스크 풀의 각 볼륨에 쓸 수 있으므로 더 작은 크기의 여러 디스크 볼륨을 생성하는 것이 좋습니다. 예를 들어 테이프 크기가 250GB인 경우 각각 10GB(10000)의 크기로 25개의 디스크 볼륨을 생성합니다.
+
++
+TSM 서버는 디스크 볼륨의 디렉토리에 공간을 사전 할당합니다. 완료하는 데 시간이 걸릴 수 있습니다(200GB 디스크 볼륨의 경우 3시간 이상).
+
+
+
+

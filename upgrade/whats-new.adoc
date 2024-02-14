@@ -1,0 +1,107 @@
+---
+permalink: upgrade/whats-new.html 
+sidebar: sidebar 
+keywords: what is new in StorageGRID 11.8 
+summary: 이번 StorageGRID 릴리즈에는 다음과 같은 기능이 도입되었습니다. 
+---
+= StorageGRID 11.8의 새로운 기능
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 StorageGRID 릴리스는 다음과 같은 기능 및 기능 변경 사항을 소개합니다.
+
+
+
+== 설치, 업그레이드, 핫픽스
+
+임시 설치 암호:: 언제 link:../vmware/deploying-storagegrid-node-as-virtual-machine.html["StorageGRID 노드를 가상 머신으로 구축합니다"] 또는 VMware vSphere를 사용하여 를 수행할 수도 있습니다 link:../vmware/automating-grid-node-deployment-in-vmware-vsphere.html["그리드 노드 구축을 자동화합니다"]임시 설치 암호를 설정하라는 메시지가 나타납니다. 이 암호는 VM 콘솔에 액세스하거나 새 노드가 그리드에 합류하기 전에 SSH를 사용해야 하는 경우에만 사용됩니다.
+
+
+
+
+== 어플라이언스
+
+기기 설명서 사이트:: StorageGRID 어플라이언스에 대한 문서가 새로운 문서로 이동되었습니다 link:https://docs.netapp.com/us-en/storagegrid-appliances/["장비 설명서 사이트"^].
+FIPS 지원:: FIPS 140-2 검증 암호화 지원
+SGF6112 개선 사항:: StorageGRID 11.8 및 StorageGRID 어플라이언스 설치 프로그램 펌웨어 버전 3.8.0 지원:
++
+--
+* 신규 SGF6112 설치에서 PUT 성능이 크게 향상되었습니다.
+* 업그레이드된 노드 및 새 SGF6112 노드 모두에서 UEFI 보안 부팅.
+* DAS NVMe SSD 드라이브 암호에 대한 로컬 키 관리자.
+
+
+--
+
+
+
+
+== 구성 및 관리
+
+Consistency Grid-wide(일관성 그리드 전체) 기본값:: 를 변경할 수 있습니다 link:../s3/consistency-controls.html["그리드 전체의 기본 일관성"] 그리드 관리자 또는 의 grid-config 끝점을 사용합니다 link:../admin/using-grid-management-api.html["그리드 관리 전용 API"]. 새 기본값은 변경 후 생성된 버킷에 적용됩니다.
+ILM 정책 태그:: 버킷 태그로 제어되는 버킷별 ILM 정책을 허용합니다. 여러 활성 및 비활성 ILM 정책이 동시에 존재할 수 있습니다. 을 참조하십시오 link:../ilm/ilm-policy-overview.html["ILM 정책: 개요"].
+Kafka 엔드포인트:: 에 대한 Kafka 엔드포인트를 지원합니다 link:../tenant/understanding-notifications-for-buckets.html["버킷 이벤트 알림"].
+관리 인터페이스 트래픽을 위한 로드 밸런서:: 로드 밸런서 엔드포인트를 생성하여 관리 노드에서 관리 인터페이스 워크로드를 관리합니다. 을 참조하십시오 link:../admin/managing-load-balancing.html["로드 균형 조정에 대한 고려 사항"]. 이러한 변경의 일환으로 S3 또는 Swift 클라이언트 액세스를 위한 HTTPS 로드 밸런서 엔드포인트를 생성할 때 Grid Manager 및 Tenant Manager 포트 443, 8443 및 9443 을 사용할 수 있습니다.
+드라이브 관리 탭을 클릭합니다:: 추가되었습니다 link:../monitor/viewing-manage-drives-tab.html["드라이브 관리 탭을 클릭합니다"] SGF6112 어플라이언스용.
+메타데이터 전용 스토리지 노드:: 이제 새 를 지정할 수 있습니다 link:../primer/what-storage-node-is.html#types-of-storage-nodes["소프트웨어 기반 스토리지 노드"] 개체와 메타데이터 둘 다 아닌 메타데이터만 저장하는 데 사용됩니다.
+SSO는 사용자 계정 이름을 지원합니다:: 시기 link:../admin/configuring-sso.html["SSO(Single Sign-On) 구성"] AD FS(Active Directory Federation Service) 또는 PingFederate의 경우 사용자 계정 이름을 에 매핑할 수 있습니다 `Name ID` 청구 규칙 또는 받는 사람 `sAMAccountName=${username}` 어댑터 인스턴스
+TLS 정책 구성 및 KMIP 지원::
++
+--
+* StorageGRID는 이제 KMIP 연결을 위해 TLS 1.2 또는 TLS 1.3 프로토콜을 지원합니다. 을 참조하십시오 link:../admin/kms-considerations-and-requirements.html["키 관리 서버 사용에 대한 고려 사항 및 요구 사항"].
+* link:../admin/kms-configuring-storagegrid-as-client.html["Hashicorp는 현재 KMIP에 대해 완벽하게 지원됩니다"].
+* 에서는 기능이 향상되었습니다 link:../admin/manage-tls-ssh-policy.html["TLS 정책 구성입니다"].
+
+
+--
+
+
+
+
+== 그리드 확장, 그리드 유지, 노드 복구 또는 교체
+
+계정 복제 개선:: 기존 계정을 원격 그리드에 복제할 수 있습니다. 을 참조하십시오 link:../admin/grid-federation-what-is-account-clone.html["계정 클론이란 무엇입니까"].
+아카이브 노드를 해제할 수 있습니다:: 이제 노드 압축 해제 절차를 사용하여 그리드에서 연결이 끊어진 사용되지 않는 아카이브 노드를 제거할 수 있습니다. 을 참조하십시오 link:../maintain/decommissioning-disconnected-grid-nodes.html["연결이 끊긴 그리드 노드의 서비스 해제"].
++
+--
+
+NOTE: StorageGRID 11.7에서는 아카이브 노드가 더 이상 사용되지 않습니다.
+
+--
+자동 볼륨 복원:: 자동으로 볼륨 복원을 수행할 수 있도록 토글을 추가했습니다. 을 참조하십시오 link:../maintain/restoring-volume.html["Grid Manager를 사용하여 개체 데이터를 복원합니다"].
+삭제 코딩, 구성 변경 및 재조정 절차:: 삭제 코딩 구성 개선 사항
++
+--
+기존 및 새 스토리지 노드에 삭제 코딩 조각을 재배포합니다. 유지 관리 작업 중 균형을 다시 계산하여 작업이 완료될 때 배분을 향상시킬 수 있습니다. 을 참조하십시오 link:../expand/rebalancing-erasure-coded-data-after-adding-storage-nodes.html["삭제 코딩 재조정 절차"].
+
+--
+관리 API 스택 추적:: 관리 API 스택 추적 * 보안 설정을 사용하면 스택 추적이 Grid Manager 및 테넌트 관리자 API 오류 응답에서 반환되는지 여부를 제어할 수 있습니다. 을 참조하십시오 link:../admin/changing-browser-session-timeout-interface.html["인터페이스 보안 설정을 변경합니다"].
+롤링 재부팅 절차:: 이제 를 사용할 수 있습니다 link:../maintain/rolling-reboot-procedure.html["롤링 재부팅 절차"] 서비스 중단 없이 여러 그리드 노드를 재부팅해야 합니다.
+
+
+
+
+== 그리드 관리자
+
+신뢰할 수 없는 클라이언트 네트워크, 추가 포트에 대한 정보:: 신뢰할 수 없는 클라이언트 네트워크에 열려 있는 포트 그리드 관리자 목록은 이제 * configuration * > * Network * > * Load Balancer Endpoint * > * Management interface * (이전의 방화벽 제어 페이지에 있음)에서 "Open to Untrusted Client network"라는 열에 있습니다. 을 참조하십시오 link:../admin/configuring-load-balancer-endpoints.html["로드 밸런서 엔드포인트를 구성합니다"].
+
+
+
+
+== 테넌트 관리자
+
+S3 콘솔은 더 이상 실험적이지 않습니다:: 에 설명된 추가 기능 link:../tenant/use-s3-console.html["S3 콘솔 사용"].
+테넌트 권한:: 를 클릭합니다 link:../tenant/tenant-management-permissions.html["테넌트 관리 권한"], 모든 버킷 보기 , 이(가) 추가되었습니다.
+
+
+
+
+== S3 REST API
+
+* link:../s3/changes-to-s3-rest-api-support.html["S3 REST API 지원으로 변경"].
+* UUID가 있는 S3 삭제 마커. 을 참조하십시오 link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["오브젝트 삭제 방법"] 및 link:../audit/sdel-s3-delete.html["SDEL: S3 삭제"].
+* link:../s3/select-object-content.html["S3 ScanRange를 선택합니다"] CSV 및 Parquet 파일에 대한 요청에서 제공될 때 사용됩니다.
+

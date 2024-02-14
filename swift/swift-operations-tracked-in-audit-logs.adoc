@@ -1,0 +1,48 @@
+---
+permalink: swift/swift-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: swift options request 
+summary: 성공한 모든 스토리지 삭제, 가져오기, 헤드, POST 및 PUT 작업은 StorageGRID 감사 로그에서 추적됩니다. 실패 및 정보, 인증 또는 옵션 요청은 기록되지 않습니다. 
+---
+= 감사 로그에서 Swift 작업이 추적되었습니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+성공한 모든 스토리지 삭제, 가져오기, 헤드, POST 및 PUT 작업은 StorageGRID 감사 로그에서 추적됩니다. 실패 및 정보, 인증 또는 옵션 요청은 기록되지 않습니다.
+
+
+
+== 계정 작업
+
+* link:account-operations.html["계정을 가져옵니다"]
+* link:account-operations.html["머리 계정"]
+
+
+
+
+== 컨테이너 작업
+
+* link:container-operations.html["컨테이너를 삭제합니다"]
+* link:container-operations.html["컨테이너를 가져옵니다"]
+* link:container-operations.html["헤드 컨테이너"]
+* link:container-operations.html["용기를 놓습니다"]
+
+
+
+
+== 오브젝트 작업
+
+* link:object-operations.html["개체를 삭제합니다"]
+* link:object-operations.html["객체를 가져옵니다"]
+* link:object-operations.html["머리 물체"]
+* link:object-operations.html["개체를 넣습니다"]
+
+
+.관련 정보
+* link:../audit/accessing-audit-log-file.html["감사 로그 파일에 액세스합니다"]
+* link:../audit/client-write-audit-messages.html["클라이언트가 감사 메시지를 기록합니다"]
+* link:../audit/client-read-audit-messages.html["클라이언트가 감사 메시지를 읽습니다"]
+

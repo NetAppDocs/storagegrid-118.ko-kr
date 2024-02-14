@@ -1,0 +1,26 @@
+---
+permalink: admin/defining-domain-policy-and-registering-node.html 
+sidebar: sidebar 
+keywords: domain policy, tsm, tivoli storage manager 
+summary: 아카이브 노드에서 저장된 데이터에 대해 TSM 관리 클래스를 사용하는 도메인 정책을 정의한 다음 이 도메인 정책을 사용하도록 노드를 등록해야 합니다. 
+---
+= 도메인 정책을 정의하고 노드를 등록합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+아카이브 노드에서 저장된 데이터에 대해 TSM 관리 클래스를 사용하는 도메인 정책을 정의한 다음 이 도메인 정책을 사용하도록 노드를 등록해야 합니다.
+
+
+NOTE: TSM(Tivoli Storage Manager)의 아카이브 노드에 대한 클라이언트 암호가 만료되면 아카이브 노드 프로세스에서 메모리가 누수될 수 있습니다. 아카이브 노드의 클라이언트 사용자 이름/암호가 만료되지 않도록 TSM 서버가 구성되어 있는지 확인합니다.
+
+아카이브 노드를 사용하거나 기존 노드를 업데이트하기 위해 TSM 서버에 노드를 등록할 때 MAXNUMMP 매개 변수를 REGISTER NODE 명령에 지정하여 쓰기 작업에 사용할 수 있는 마운트 지점의 수를 지정해야 합니다. 마운트 지점의 수는 일반적으로 아카이브 노드에 할당된 테이프 드라이브 헤드의 수와 같습니다. TSM 서버의 MAXNUMMP에 지정된 숫자는 최소한 * ARC * > * Target * > * Configuration * > * Main * > * Maximum Store Sessions * 에 설정된 값보다 큰 값이어야 합니다. 동시 저장소 세션은 아카이브 노드에서 지원되지 않으므로 0 또는 1 값으로 설정됩니다.
+
+TSM 서버에 대해 설정된 MAXSESSIONS 값은 모든 클라이언트 애플리케이션이 TSM 서버에 열 수 있는 최대 세션 수를 제어합니다. TSM에 지정된 MAXSESSIONS 값은 아카이브 노드의 Grid Manager에서 * ARC * > * Target * > * Configuration * > * Main * > * Number of Sessions * 에 지정된 값보다 크거나 같아야 합니다. 아카이브 노드는 마운트 지점당 최대 하나의 세션과 작은 수의(<5) 추가 세션을 동시에 생성합니다.
+
+아카이브 노드에 할당된 TSM 노드는 사용자 지정 도메인 정책을 사용합니다 `tsm-domain`. 를 클릭합니다 `tsm-domain` 도메인 정책은 "표준" 도메인 정책의 수정된 버전으로, 테이프에 기록하도록 구성되고 아카이브 대상이 StorageGRID 시스템의 스토리지 풀로 설정되도록 구성됩니다 (`_SGWSDiskPool_`)를 클릭합니다.
+
+
+NOTE: 관리자 권한으로 TSM 서버에 로그인하고 dsmadmc 도구를 사용하여 도메인 정책을 생성하고 활성화해야 합니다.

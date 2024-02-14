@@ -1,0 +1,95 @@
+---
+permalink: maintain/recovering-storage-node-that-has-been-down-more-than-15-days.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, storage node failure 
+summary: 단일 스토리지 노드가 오프라인이고 다른 스토리지 노드에 15일 이상 연결되지 않은 경우 노드에서 Cassandra를 재구성해야 합니다. 
+---
+= 스토리지 노드를 15일 이상 복구합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+단일 스토리지 노드가 오프라인이고 다른 스토리지 노드에 15일 이상 연결되지 않은 경우 노드에서 Cassandra를 재구성해야 합니다.
+
+.시작하기 전에
+* 스토리지 노드 사용 중지가 진행 중이 아니거나 노드 사용 중단 절차를 일시 중지했습니다. (Grid Manager에서 * 유지보수 * > * 작업 * > * 서비스 해제 * 를 선택합니다.)
+* 확장이 진행 중이 아닌 것을 확인했습니다. (Grid Manager에서 * 유지보수 * > * 작업 * > * 확장 * 을 선택합니다.)
+
+
+.이 작업에 대해
+스토리지 노드에는 개체 메타데이터가 포함된 Cassandra 데이터베이스가 있습니다. 스토리지 노드가 15일 이상 다른 스토리지 노드와 통신할 수 없는 경우 StorageGRID는 노드의 Cassandra 데이터베이스가 오래된 것으로 가정합니다. Cassandra가 다른 스토리지 노드의 정보를 사용하여 재구축될 때까지 스토리지 노드를 그리드에 다시 연결할 수 없습니다.
+
+단일 스토리지 노드가 다운된 경우에만 Cassandra를 재구축하려면 다음 절차를 따르십시오. 추가 스토리지 노드가 오프라인이거나 Cassandra가 지난 15일 이내에 다른 스토리지 노드에 재구축된 경우 기술 지원 부서에 문의하십시오. 예를 들어, Cassandra는 실패한 스토리지 볼륨을 복구하거나 장애가 발생한 스토리지 노드를 복구하는 절차의 일부로 재구성되었을 수 있습니다.
+
+
+CAUTION: 둘 이상의 스토리지 노드에 장애가 있거나 오프라인 상태인 경우 기술 지원 부서에 문의하십시오. 다음 복구 절차를 수행하지 마십시오. 데이터가 손실될 수 있습니다.
+
+
+CAUTION: 스토리지 노드 장애 또는 복구 후 15일 이내에 두 번째 스토리지 노드 오류인 경우 기술 지원 부서에 문의하십시오. 다음 복구 절차를 수행하지 마십시오. 데이터가 손실될 수 있습니다.
+
+
+NOTE: 한 사이트에 둘 이상의 스토리지 노드에 장애가 발생한 경우 사이트 복구 절차가 필요할 수 있습니다. 을 참조하십시오 link:how-site-recovery-is-performed-by-technical-support.html["기술 지원 부서에서 사이트를 복구하는 방법"].
+
+.단계
+. 필요한 경우 복구해야 할 스토리지 노드의 전원을 켭니다.
+. 그리드 노드에 로그인합니다.
++
+.. 다음 명령을 입력합니다. `ssh admin@_grid_node_IP_`
+.. 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
+.. 루트로 전환하려면 다음 명령을 입력합니다. `su -`
+.. 에 나열된 암호를 입력합니다 `Passwords.txt` 파일.
++
+루트로 로그인하면 프롬프트가 에서 변경됩니다 `$` 를 선택합니다 `#`.+
+
++
+
+NOTE: 그리드 노드에 로그인할 수 없는 경우 시스템 디스크가 손상되지 않았을 수 있습니다. 의 절차로 이동합니다  link:recovering-from-system-drive-failure.html["시스템 드라이브 장애 복구"].
+
+
+
+. 스토리지 노드에서 다음 검사를 수행합니다.
++
+.. 다음 명령을 실행합니다. `nodetool status`
++
+출력은 이어야 합니다 `Connection refused`
+
+.. Grid Manager에서 * 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+.. 사이트 * > * 스토리지 노드 * > * SSM * > * 서비스 * 를 선택합니다. Cassandra 서비스가 표시되는지 확인합니다 `Not Running`.
+.. 스토리지 노드 * > * SSM * > * 리소스 * 를 선택합니다. 볼륨 섹션에 오류 상태가 없는지 확인합니다.
+.. 다음 명령을 실행합니다. `grep -i Cassandra /var/local/log/servermanager.log`
++
+출력에 다음 메시지가 표시됩니다.
+
++
+[listing]
+----
+Cassandra not started because it has been offline for more than 15 day grace period - rebuild Cassandra
+----
+
+
+. 이 명령을 실행하고 스크립트 출력을 모니터링합니다. `check-cassandra-rebuild`
++
+** 볼륨 0에 따라 Cassandra 서비스가 실행 중이면 중지하라는 메시지가 표시됩니다. 입력: * y *
++
+
+NOTE: Cassandra 서비스가 이미 중지되어 있으면 메시지가 표시되지 않습니다. Cassandra 서비스는 볼륨 0에만 중지됩니다.
+
+** 스크립트의 경고를 검토합니다. 해당 사항이 없는 경우 Cassandra를 다시 빌드할지 확인합니다. 입력: * y *
++
+
+NOTE: 일부 StorageGRID 복구 절차에서는 리퍼를 사용하여 Cassandra 수리를 처리합니다. 관련 또는 필수 서비스가 시작되는 즉시 수리가 자동으로 이루어집니다. "Reaper" 또는 "Cassandra repair"라는 스크립트 출력을 확인할 수 있습니다. 복구가 실패했음을 나타내는 오류 메시지가 표시되면 오류 메시지에 표시된 명령을 실행합니다.
+
+
+
+. 재생성이 완료된 후 다음 검사를 수행합니다.
++
+.. Grid Manager에서 * 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+.. 사이트 _ * > * 복구된 스토리지 노드 * > * SSM * > * 서비스 * 를 선택합니다.
+.. 모든 서비스가 실행 중인지 확인합니다.
+.. DDS * > * Data Store * 를 선택합니다.
+.. Data Store Status * 가 "Up"이고 * Data Store State * 가 "Normal"인지 확인합니다.
+
+
+

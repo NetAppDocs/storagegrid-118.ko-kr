@@ -1,0 +1,64 @@
+---
+permalink: admin/creating-and-activating-domain-policy.html 
+sidebar: sidebar 
+keywords: domain policy for tsm, tivoli storage manager policy 
+summary: 아카이브 노드에서 전송된 데이터를 저장하도록 TSM 서버를 구성하려면 도메인 정책을 생성한 다음 활성화해야 합니다. 
+---
+= 도메인 정책을 만들고 활성화합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+아카이브 노드에서 전송된 데이터를 저장하도록 TSM 서버를 구성하려면 도메인 정책을 생성한 다음 활성화해야 합니다.
+
+.단계
+. 도메인 정책을 생성합니다.
++
+`copy domain standard tsm-domain`
+
+. 기존 관리 클래스를 사용하지 않는 경우 다음 중 하나를 입력합니다.
++
+`define policyset tsm-domain standard`
+
++
+`define mgmtclass tsm-domain standard _default_`
+
++
+`_default_` 는 배포의 기본 관리 클래스입니다.
+
+. 적절한 스토리지 풀에 카피그룹을 생성합니다. 입력(한 줄에):
++
+`define copygroup tsm-domain standard _default_ type=archive destination=SGWSDiskPool retinit=event retmin=0 retver=0`
+
++
+`_default_` 아카이브 노드의 기본 관리 클래스입니다. 의 값 `retinit`, `retmin`, 및 `retver` 아카이브 노드에서 현재 사용하는 보존 동작을 반영하도록 선택되었습니다
+
++
+
+NOTE: 설정하지 마십시오 `retinit` 를 선택합니다 `retinit=create`. 설정 `retinit=create` 보존 이벤트는 TSM 서버에서 콘텐츠를 제거하는 데 사용되므로 아카이브 노드가 콘텐츠를 삭제하지 못하도록 차단합니다.
+
+. 관리 클래스를 기본값으로 할당합니다.
++
+`assign defmgmtclass _tsm-domain_ standard _default_`
+
+. 새 정책 세트를 활성으로 설정합니다.
++
+`activate policyset tsm-domain standard`
+
++
+activate 명령을 입력할 때 나타나는 "no backup copy group" 경고는 무시합니다.
+
+. TSM 서버에 설정된 새 정책을 사용하려면 노드를 등록합니다. TSM 서버에서 (한 줄에) 다음을 입력합니다.
++
+`register node arc-user arc-password passexp=0 domain=tsm-domain MAXNUMMP=number-of-sessions`
+
++
+arc-user 및 arc-password는 Archive Node에서 정의한 클라이언트 노드 이름 및 암호와 동일하며, MAXNUMMP 값은 Archive Node store 세션에 예약된 테이프 드라이브 수로 설정됩니다.
+
++
+
+NOTE: 기본적으로 노드를 등록하면 노드에 대해 정의된 암호를 사용하여 클라이언트 소유자 권한에 관리 사용자 ID가 생성됩니다.
+
+

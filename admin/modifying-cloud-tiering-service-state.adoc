@@ -1,0 +1,34 @@
+---
+permalink: admin/modifying-cloud-tiering-service-state.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: Cloud Tiering Service의 상태를 변경하여 S3 API를 통해 연결되는 타겟 외부 아카이브 스토리지 시스템에 대한 아카이브 노드의 읽기 및 쓰기 기능을 제어할 수 있습니다. 
+---
+= Cloud Tiering Service 상태를 수정합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cloud Tiering Service의 상태를 변경하여 S3 API를 통해 연결되는 타겟 외부 아카이브 스토리지 시스템에 대한 아카이브 노드의 읽기 및 쓰기 기능을 제어할 수 있습니다.
+
+.시작하기 전에
+* 를 사용하여 그리드 관리자에 로그인해야 합니다 link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"].
+* 있습니다 link:admin-group-permissions.html["특정 액세스 권한"].
+* 아카이브 노드를 구성해야 합니다.
+
+
+.이 작업에 대해
+Cloud Tiering Service State를 * Read-Write Disabled * 로 변경하면 아카이브 노드를 효과적으로 오프라인 상태로 전환할 수 있습니다.
+
+.단계
+. 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+. Archive Node_ * > * ARC * 를 선택합니다.
+. Configuration * > * Main * 을 선택합니다.
++
+image::../media/modifying_middleware_state.gif[Cloud Tiering Service 상태]
+
+. Cloud Tiering Service State * 를 선택합니다.
+. Apply Changes * 를 선택합니다.
+

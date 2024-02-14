@@ -1,0 +1,21 @@
+---
+permalink: maintain/recovering-from-system-drive-failure.html 
+sidebar: sidebar 
+keywords: recover, system drive failure, workflow 
+summary: 소프트웨어 기반 스토리지 노드의 시스템 드라이브에 장애가 발생한 경우 StorageGRID 시스템에서 스토리지 노드를 사용할 수 없습니다. 시스템 드라이브 장애 시 복구하려면 특정 작업 세트를 완료해야 합니다. 
+---
+= 시스템 드라이브 오류에서 복구: 워크플로우
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+소프트웨어 기반 스토리지 노드의 시스템 드라이브에 장애가 발생한 경우 StorageGRID 시스템에서 스토리지 노드를 사용할 수 없습니다. 시스템 드라이브 장애 시 복구하려면 특정 작업 세트를 완료해야 합니다.
+
+소프트웨어 기반 스토리지 노드의 시스템 드라이브 장애를 복구하려면 다음 절차를 따르십시오. 이 절차에는 스토리지 볼륨도 실패하거나 다시 마운트할 수 없는 경우 따라야 할 단계가 포함되어 있습니다.
+
+
+NOTE: 이 절차는 소프트웨어 기반 스토리지 노드에만 적용됩니다. 에 다른 절차를 따라야 합니다 link:recovering-storagegrid-appliance-storage-node.html["어플라이언스 스토리지 노드를 복구합니다"].
+
+image::../media/storage_node_recovery_system_drive.gif[소프트웨어 기반 스토리지 노드에서 장애가 발생한 시스템 드라이브의 복구 단계]

@@ -1,0 +1,50 @@
+---
+permalink: admin/migrating-objects-from-cloud-tiering-s3-to-cloud-storage-pool.html 
+sidebar: sidebar 
+keywords: cloud tiering 
+summary: 현재 Cloud Tiering - Simple Storage Service 기능을 사용하여 오브젝트 데이터를 S3 버킷으로 계층화하려는 경우 대신 오브젝트를 Cloud Storage Pool로 마이그레이션해야 합니다. 클라우드 스토리지 풀은 StorageGRID 시스템의 모든 스토리지 노드를 활용하는 확장 가능한 접근 방식을 제공합니다. 
+---
+= Cloud Tiering-S3에서 Cloud Storage Pool로 오브젝트 마이그레이션
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+현재 * Cloud Tiering - S3(Simple Storage Service) * 기능을 사용하여 오브젝트 데이터를 S3 버킷으로 계층화하려는 경우 대신 오브젝트를 Cloud Storage Pool로 마이그레이션해야 합니다. 클라우드 스토리지 풀은 StorageGRID 시스템의 모든 스토리지 노드를 활용하는 확장 가능한 접근 방식을 제공합니다.
+
+.시작하기 전에
+* 를 사용하여 그리드 관리자에 로그인했습니다 link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"].
+* 있습니다 link:admin-group-permissions.html["특정 액세스 권한"].
+* Cloud Tiering에 구성된 S3 버킷에 오브젝트를 이미 저장했습니다.
+
+
+
+NOTE: 오브젝트 데이터를 마이그레이션하기 전에 NetApp 고객 담당자에게 연락하여 관련 비용을 파악하고 관리하십시오.
+
+.이 작업에 대해
+ILM 관점에서 Cloud Storage Pool은 스토리지 풀과 유사합니다. 그러나 스토리지 풀은 StorageGRID 시스템 내의 스토리지 노드 또는 아카이브 노드로 구성되지만, 클라우드 스토리지 풀은 외부 S3 버킷으로 구성됩니다.
+
+Cloud Tiering-S3에서 클라우드 스토리지 풀로 오브젝트를 마이그레이션하기 전에 먼저 S3 버킷을 생성한 다음 StorageGRID에서 클라우드 스토리지 풀을 생성해야 합니다. 그런 다음 새 ILM 정책을 생성하고 Cloud Tiering 버킷에 오브젝트를 저장하는 데 사용되는 ILM 규칙을 Cloud Storage Pool에 동일한 오브젝트를 저장하는 클론 생성된 ILM 규칙으로 대체할 수 있습니다.
+
+
+NOTE: 오브젝트를 클라우드 스토리지 풀에 저장할 때 StorageGRID 내에 오브젝트 복사본도 저장할 수 없습니다. 현재 Cloud Tiering에 사용 중인 ILM 규칙이 개체를 동시에 여러 위치에 저장하도록 구성된 경우 해당 기능이 손실되므로 이 선택적 마이그레이션을 계속 수행할지 여부를 고려하십시오. 이 마이그레이션을 계속할 경우 기존 규칙을 복제하는 대신 새 규칙을 만들어야 합니다.
+
+.단계
+. 클라우드 스토리지 풀을 생성합니다.
++
+Cloud Storage Pool에 새로운 S3 버킷을 사용하여 Cloud Storage Pool에서 관리하는 데이터만 포함되도록 합니다.
+
+. Cloud Tiering 버킷에 오브젝트를 저장할 수 있도록 하는 ILM 정책에서 활성 ILM 규칙을 찾습니다.
+. 이러한 각 규칙을 복제합니다.
+. 클론 복제된 규칙에서 배치 위치를 새 Cloud Storage Pool로 변경합니다.
+. 복제된 규칙을 저장합니다.
+. 새 규칙을 사용하는 새 정책을 만듭니다.
+. 새 정책을 시뮬레이션하고 활성화합니다.
++
+새 정책이 활성화되어 ILM 평가가 발생하면 Cloud Tiering에 구성된 S3 버킷에서 Cloud Storage Pool에 구성된 S3 버킷으로 오브젝트가 이동됩니다. 그리드의 사용 가능한 공간은 영향을 받지 않습니다. 오브젝트를 Cloud Storage Pool로 이동한 후 Cloud Tiering 버킷에서 제거됩니다.
+
+
+
+.관련 정보
+link:../ilm/index.html["ILM을 사용하여 개체를 관리합니다"]

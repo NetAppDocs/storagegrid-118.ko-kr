@@ -1,0 +1,45 @@
+---
+permalink: swift/options-request.html 
+sidebar: sidebar 
+keywords: swift options request 
+summary: 옵션 요청은 개별 Swift 서비스의 사용 가능 여부를 확인합니다. 옵션 요청은 URL에 지정된 스토리지 노드 또는 게이트웨이 노드에 의해 처리됩니다. 
+---
+= 옵션 요청
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+옵션 요청은 개별 Swift 서비스의 사용 가능 여부를 확인합니다. 옵션 요청은 URL에 지정된 스토리지 노드 또는 게이트웨이 노드에 의해 처리됩니다.
+
+
+
+== 옵션 방법입니다
+
+예를 들어, 클라이언트 애플리케이션은 스토리지 노드의 Swift 인증 자격 증명을 제공하지 않고 스토리지 노드의 Swift 포트에 대한 옵션 요청을 발급하여 스토리지 노드를 사용할 수 있는지 여부를 확인할 수 있습니다. 이 요청을 사용하여 스토리지 노드가 다운된 시점을 모니터링하거나 외부 로드 밸런서가 식별하도록 할 수 있습니다.
+
+info URL 또는 저장소 URL과 함께 사용할 경우 options 메서드는 지정된 URL에 대해 지원되는 동사 목록(예: head, get, options 및 put)을 반환합니다. 옵션 방법은 인증 URL과 함께 사용할 수 없습니다.
+
+다음 요청 매개 변수가 필요합니다.
+
+* `Account`
+
+
+다음 요청 매개 변수는 선택 사항입니다.
+
+* `Container`
+* `Object`
+
+
+성공적으로 실행되면 "HTTP/1.1 204 콘텐츠 없음" 응답과 함께 다음 헤더가 반환됩니다. 스토리지 URL에 대한 옵션 요청에는 타겟이 없을 필요가 없습니다.
+
+* `Allow` 지정된 URL에 대해 지원되는 동사 목록(예: head, get, options, 및 PUT)
+* `Content-Length`
+* `Content-Type`
+* `Date`
+* `X-Trans-Id`
+
+
+.관련 정보
+link:supported-swift-api-endpoints.html["지원되는 Swift API 엔드포인트"]

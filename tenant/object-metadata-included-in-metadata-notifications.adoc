@@ -1,0 +1,75 @@
+---
+permalink: tenant/object-metadata-included-in-metadata-notifications.html 
+sidebar: sidebar 
+keywords: object metadata notification 
+summary: 이 표에는 검색 통합이 활성화된 경우 대상 끝점으로 전송되는 JSON 문서에 포함된 모든 필드가 나열됩니다. 
+---
+= 메타데이터 알림에 포함된 개체 메타데이터입니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 표에는 검색 통합이 활성화된 경우 대상 끝점으로 전송되는 JSON 문서에 포함된 모든 필드가 나열됩니다.
+
+문서 이름에는 버킷 이름, 오브젝트 이름 및 버전 ID(있는 경우)가 포함됩니다.
+
+[cols="1a,2a"]
+|===
+| 유형 | 항목 이름 및 설명입니다 
+
+
+ a| 
+버킷 및 오브젝트 정보
+ a| 
+`bucket`: 버킷의 이름입니다
+
+
+
+ a| 
+`key`: 개체 키 이름
+
+
+
+ a| 
+`versionID`: 오브젝트 버전, 버전이 있는 버킷의 오브젝트
+
+
+
+ a| 
+`region`버킷 영역(예: `us-east-1`
+
+
+
+ a| 
+시스템 메타데이터
+ a| 
+`size`: HTTP 클라이언트에 표시되는 개체 크기(바이트)입니다
+
+
+
+ a| 
+`md5`: 객체 해시
+
+
+
+ a| 
+사용자 메타데이터
+ a| 
+`metadata`: 오브젝트의 모든 사용자 메타데이터를 키 값 쌍으로 사용합니다
+
+`key:value`
+
+
+
+ a| 
+태그
+ a| 
+`tags`: 객체에 대해 정의된 모든 객체 태그를 키 값 쌍으로 사용합니다
+
+`key:value`
+
+|===
+
+NOTE: 태그 및 사용자 메타데이터의 경우 StorageGRID는 날짜 및 숫자를 Elasticsearch에 문자열 또는 S3 이벤트 알림으로 전달합니다. 이러한 문자열을 날짜 또는 숫자로 해석하도록 Elasticsearch를 구성하려면 동적 필드 매핑 및 날짜 형식 매핑에 대한 Elasticsearch 지침을 따르십시오. 검색 통합 서비스를 구성하기 전에 인덱스에서 동적 필드 매핑을 활성화해야 합니다. 문서가 인덱싱된 후에는 인덱스에서 문서의 필드 형식을 편집할 수 없습니다.

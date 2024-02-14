@@ -1,0 +1,35 @@
+---
+permalink: troubleshoot/troubleshooting-delivery-platform-services-messages.html 
+sidebar: sidebar 
+keywords: how to troubleshoot delivery of platform services message, how to troubleshoot smtt alarm 
+summary: '플랫폼 서비스 메시지가 데이터를 수용할 수 없는 대상으로 전달될 경우 그리드 관리자에서 SMTT\(Total Events\) 경보가 트리거됩니다.' 
+---
+= 플랫폼 서비스 메시지 전달 문제 해결(SMTT 알람)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+플랫폼 서비스 메시지가 데이터를 수용할 수 없는 대상으로 전달될 경우 그리드 관리자에서 SMTT(Total Events) 경보가 트리거됩니다.
+
+.이 작업에 대해
+예를 들어 연결된 복제 또는 알림 메시지를 구성된 엔드포인트로 전달할 수 없더라도 S3 멀티파트 업로드에 성공할 수 있습니다. 또는 메타데이터가 너무 긴 경우 CloudMirror 복제에 대한 메시지를 배달하지 못할 수 있습니다.
+
+SMTT 알람에는 다음과 같은 마지막 이벤트 메시지가 포함되어 있습니다. `Failed to publish notifications for _bucket-name object key_` 알림이 실패한 마지막 객체에 대해
+
+이벤트 메시지는 에도 나열됩니다 `/var/local/log/bycast-err.log` 로그 파일. 를 참조하십시오 link:../monitor/logs-files-reference.html["로그 파일 참조"].
+
+자세한 내용은 를 참조하십시오 link:../admin/troubleshooting-platform-services.html["플랫폼 서비스 문제 해결"]. 필요한 경우도 있습니다 link:../tenant/signing-in-to-tenant-manager.html["테넌트 관리자에서 테넌트에 액세스합니다"] 플랫폼 서비스 오류를 디버깅하려면
+
+.단계
+. 경보를 보려면 * nodes * > *_site_ * > *_GRID node_ * > * Events * 를 선택합니다.
+. 테이블 상단의 마지막 이벤트 보기
++
+이벤트 메시지는 에도 나열됩니다 `/var/local/log/bycast-err.log`.
+
+. SMTT 알람 내용물에 제공된 지침을 따라 문제를 해결하십시오.
+. Reset event counts * 를 선택합니다.
+. 플랫폼 서비스 메시지가 전달되지 않은 객체를 테넌트에 알립니다.
+. 테넌트에게 개체의 메타데이터 또는 태그를 업데이트하여 실패한 복제 또는 알림을 트리거하도록 지시합니다.
+

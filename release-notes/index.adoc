@@ -1,0 +1,16 @@
+---
+permalink: release-notes/index.html 
+sidebar: sidebar 
+keywords: release notes 
+summary: 해결된 문제 및 알려진 문제에 대한 릴리스 관련 정보를 얻습니다. 
+---
+= 릴리스 정보
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+해결된 문제 및 알려진 문제에 대한 릴리스 관련 정보를 얻습니다.
+
+NetApp Support 사이트 에 로그인합니다 https://library.netapp.com/ecm/ecm_download_file/ECMLP2886676["PDF 파일을 보거나 다운로드합니다"^] StorageGRID 11.8 릴리즈 노트 포함

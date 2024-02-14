@@ -1,0 +1,34 @@
+---
+permalink: swift/swift-rest-api-supported-operations.html 
+sidebar: sidebar 
+keywords: OpenStack, Swift API, REST API 
+summary: StorageGRID 시스템은 OpenStack Swift API에서 대부분의 작업을 지원합니다. Swift REST API 클라이언트를 StorageGRID와 통합하기 전에 계정, 컨테이너 및 오브젝트 작업에 대한 구현 세부 정보를 검토하십시오. 
+---
+= Swift REST API가 작업을 지원했습니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템은 OpenStack Swift API에서 대부분의 작업을 지원합니다. Swift REST API 클라이언트를 StorageGRID와 통합하기 전에 계정, 컨테이너 및 오브젝트 작업에 대한 구현 세부 정보를 검토하십시오.
+
+
+
+== StorageGRID에서 지원되는 작업입니다
+
+다음과 같은 Swift API 작업이 지원됩니다.
+
+* link:account-operations.html["계정 작업"]
+* link:container-operations.html["컨테이너 작업"]
+* link:object-operations.html["오브젝트 작업"]
+
+
+
+
+== 모든 작업에 대한 공통 응답 헤더입니다
+
+StorageGRID 시스템은 OpenStack Swift 오브젝트 스토리지 API v1에 정의된 대로 지원되는 작업에 대해 모든 공통 헤더를 구현합니다.
+
+.관련 정보
+http://docs.openstack.org/developer/swift/api/object_api_v1_overview.html["OpenStack: 오브젝트 스토리지 API"^]

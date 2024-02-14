@@ -1,0 +1,37 @@
+---
+permalink: upgrade/changes-to-grid-management-api.html 
+sidebar: sidebar 
+keywords: grid management api, api, api version, swagger, rest api 
+summary: StorageGRID 11.8은 그리드 관리 API 버전 4를 사용합니다. 버전 4는 버전 3을 사용하지 않지만 버전 1, 2 및 3은 계속 지원됩니다. 
+---
+= Grid Management API 변경
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 11.8은 그리드 관리 API 버전 4를 사용합니다. 버전 4는 버전 3을 사용하지 않지만 버전 1, 2 및 3은 계속 지원됩니다.
+
+
+NOTE: StorageGRID 11.8에서는 더 이상 사용되지 않는 관리 API 버전을 계속 사용할 수 있지만, 이러한 API 버전에 대한 지원은 향후 StorageGRID 릴리즈에서 제거될 예정입니다. StorageGRID 11.8로 업그레이드한 후 를 사용하여 더 이상 사용되지 않는 API를 비활성화할 수 있습니다 `PUT /grid/config/management` API를 참조하십시오.
+
+자세한 내용은 를 참조하십시오 link:../admin/using-grid-management-api.html["Grid Management API를 사용합니다"].
+
+
+
+== 에 대한 변경 사항 `ilm-policies` API v4
+
+의 StorageGRID 11.8 버전 4부터 유효합니다 `ilm-policies` API에는 버전 3과 다음과 같은 차이가 있습니다.
+
+* 기간별 정책이 더 이상 반환되지 않습니다. 기록 정책 및 태그 데이터를 가져오기 위한 별도의 새로운 API가 에 추가되었습니다 `/grid/ilm-history`.
+* 제거된 속성: `proposed`, `historical`, `historicalRules`, `activationTime`.
+* 추가된 속성: `active` (부울), `activatedBy` (정책이 할당된 태그 UUID의 배열).
+* 의 선택적 형식 쿼리 매개 변수입니다 `GET ilm-policies` 이제 값을 가져옵니다 `inactive` 및 `active.` 이전 값은 이었습니다 `proposed`, `active`, 및 `historical`.
+
+
+
+
+== 드라이브 관리를 위한 새로운 엔드포인트
+
+/grid/drive-details/{nodeId} * API 엔드포인트를 사용하여 어플라이언스 스토리지 노드의 특정 모델에서 드라이브에서 작업을 수행할 수 있습니다.

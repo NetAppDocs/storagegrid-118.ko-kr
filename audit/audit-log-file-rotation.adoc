@@ -1,0 +1,30 @@
+---
+permalink: audit/audit-log-file-rotation.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, log file, audit.log, audit.log file, rotation, save, autosave, auto save, auto-save 
+summary: 감사 로그 파일은 관리자 노드의 /var/local/log 디렉토리에 저장됩니다. 활성 감사 로그 파일의 이름은 audit.log입니다. 
+---
+= 로그 파일 회전을 감사합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+감사 로그 파일은 관리 노드의 에 저장됩니다 `/var/local/log` 디렉토리. 활성 감사 로그 파일의 이름은 입니다 `audit.log`.
+
+
+NOTE: 선택적으로 감사 로그의 대상을 변경하고 감사 정보를 외부 syslog 서버로 보낼 수 있습니다. 외부 syslog 서버가 구성되면 감사 레코드의 로컬 로그가 계속 생성되고 저장됩니다. 을 참조하십시오 link:../monitor/configure-audit-messages.html["감사 메시지 및 로그 대상을 구성합니다"].
+
+하루에 한 번, 활동입니다 `audit.log` 파일이 저장되고 새 파일이 저장됩니다 `audit.log` 파일이 시작되었습니다. 저장된 파일의 이름은 저장 시기를 형식으로 나타냅니다 `_yyyy-mm-dd.txt_`. 하루에 둘 이상의 감사 로그가 생성되는 경우 파일 이름에 숫자가 추가된 형식으로 파일이 저장된 날짜가 사용됩니다 `_yyyy-mm-dd.txt.n_`. 예를 들면, 다음과 같습니다. `2018-04-15.txt` 및 `2018-04-15.txt.1` 는 2018년 4월 15일에 생성 및 저장된 첫 번째 및 두 번째 로그 파일입니다.
+
+하루 후에는 저장된 파일이 압축되고 이름이 파일 형식으로 변경됩니다 `_yyyy-mm-dd.txt.gz_`원래 날짜를 유지합니다. 시간이 지남에 따라 이로 인해 관리 노드의 감사 로그에 할당된 스토리지가 소비됩니다. 스크립트는 감사 로그 공간 소비를 모니터링하고 에서 공간을 확보하기 위해 필요한 경우 로그 파일을 삭제합니다 `/var/local/log` 디렉토리. 감사 로그는 작성된 날짜를 기준으로 삭제되며 가장 오래된 로그가 먼저 삭제됩니다. 다음 파일에서 스크립트의 작업을 모니터링할 수 있습니다. `/var/local/log/manage-audit.log`.
+
+이 예제에서는 활성 을 보여 줍니다 `audit.log` 파일, 이전 날짜의 파일입니다 (`2018-04-15.txt`), 및 이전 날짜의 압축 파일 (`2018-04-14.txt.gz`)를 클릭합니다.
+
+[listing]
+----
+audit.log
+2018-04-15.txt
+2018-04-14.txt.gz
+----

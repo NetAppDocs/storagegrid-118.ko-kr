@@ -1,0 +1,69 @@
+---
+permalink: monitor/logs-for-third-party-software.html 
+sidebar: sidebar 
+keywords: troubleshooting, logs 
+summary: 타사 소프트웨어 로그를 사용하여 문제를 해결할 수 있습니다. 
+---
+= 타사 소프트웨어에 대한 로그입니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+타사 소프트웨어 로그를 사용하여 문제를 해결할 수 있습니다.
+
+[cols="1a,2a,3a,1a"]
+|===
+| 범주 | 파일 이름입니다 | 참고 | 에 있습니다 
+
+
+ a| 
+아카이빙
+| /var/local/log/dsierror.log 를 참조하십시오  a| 
+TSM 클라이언트 API에 대한 오류 정보입니다.
+ a| 
+아카이브 노드
+
+
+
+ a| 
+MySQL
+| /var/local/log/mysql.err입니다
+
+/var/local/log/mysql-slow.log 를 참조하십시오  a| 
+MySQL에서 생성된 로그 파일.
+
+`mysql.err` 시작 및 종료와 같은 데이터베이스 오류 및 이벤트를 캡처합니다.
+
+`mysql-slow.log` (느린 쿼리 로그)는 실행하는 데 10초 이상 걸리는 SQL 문을 캡처합니다.
+ a| 
+관리자 노드
+
+
+
+ a| 
+운영 체제
+| /var/local/log/messages입니다  a| 
+이 디렉토리에는 운영 체제에 대한 로그 파일이 포함되어 있습니다. 이러한 로그에 포함된 오류도 그리드 관리자에 표시됩니다. 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다. 그런 다음 * Topology * > *_Site_ * > *_Node_ * > * SSM * > * Events * 를 선택합니다.
+ a| 
+모든 노드
+
+
+
+ a| 
+NTP
+| /var/local/log/ntp.log 를 참조하십시오
+
+/var/lib/ntp/var/log/ntpstats/ 를 입력합니다  a| 
+`/var/local/log/ntp.log` NTP 오류 메시지에 대한 로그 파일을 포함합니다.
+
+`/var/lib/ntp/var/log/ntpstats/` 디렉토리에 NTP 타이밍 통계가 있습니다.
+
+`loopstats` 루프 필터 통계 정보를 기록합니다.
+
+`peerstats` Peer 통계 정보를 기록한다.
+ a| 
+모든 노드
+
+|===

@@ -1,0 +1,95 @@
+---
+permalink: swift/history-of-swift-api-support-in-storagegrid.html 
+sidebar: sidebar 
+keywords: swift api support history 
+summary: Swift REST API에 대한 StorageGRID 시스템의 지원 변경 사항을 숙지해야 합니다. 
+---
+= StorageGRID의 Swift API 지원 기록
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Swift REST API에 대한 StorageGRID 시스템의 지원 변경 사항을 숙지해야 합니다.
+
+[cols="1a,3a"]
+|===
+| 놓습니다 | 설명 
+
+
+ a| 
+11.8
+ a| 
+
+
+
+ a| 
+11.7
+ a| 
+Swift 클라이언트 응용 프로그램에 대한 지원은 더 이상 사용되지 않으며 향후 릴리스에서 제거될 예정입니다.
+
+
+
+ a| 
+11.6
+ a| 
+편집상의 사소한 변경.
+
+
+
+ a| 
+11.5
+ a| 
+약한 일관성을 제거했습니다. 대신 사용 가능한 일관성이 사용됩니다.
+
+
+
+ a| 
+11.4
+ a| 
+TLS 1.3에 대한 지원이 추가되었습니다. ILM과 일관성 간의 상호 관계에 대한 설명 추가
+
+
+
+ a| 
+11.3
+ a| 
+수집 시 동기식 배치를 사용하는 ILM 규칙(Ingest 동작에 대한 균형 및 엄격 옵션)의 영향을 설명하기 위해 PUT 오브젝트 작업이 업데이트되었습니다. 로드 밸런서 끝점 또는 고가용성 그룹을 사용하는 클라이언트 연결에 대한 설명이 추가되었습니다. TLS 1.1 암호가 더 이상 지원되지 않습니다.
+
+
+
+ a| 
+11.2
+ a| 
+문서에 대한 사소한 편집 변경.
+
+
+
+ a| 
+11.1
+ a| 
+그리드 노드에 대한 Swift 클라이언트 연결에 HTTP 사용 지원이 추가되었습니다. 정합성 보장 값의 정의를 업데이트했습니다.
+
+
+
+ a| 
+11.0
+ a| 
+각 테넌트 계정에 대해 1,000개의 컨테이너에 대한 지원이 추가되었습니다.
+
+
+
+ a| 
+10.3
+ a| 
+문서의 관리 업데이트 및 수정. 사용자 지정 서버 인증서를 구성하기 위한 섹션이 제거되었습니다.
+
+
+
+ a| 
+10.2
+ a| 
+StorageGRID 시스템에서 Swift API의 초기 지원 현재 지원되는 버전은 OpenStack Swift Object Storage API v1 입니다.
+
+|===

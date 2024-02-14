@@ -1,0 +1,54 @@
+---
+permalink: audit/atce-archive-object-store-begin.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, ATCE, Archive Object Store Begin 
+summary: 이 메시지는 외부 아카이브 스토리지에 콘텐츠 블록을 쓰는 작업이 시작되었음을 나타냅니다. 
+---
+= ATCHE: 아카이브 오브젝트 저장소가 시작됩니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 외부 아카이브 스토리지에 콘텐츠 블록을 쓰는 작업이 시작되었음을 나타냅니다.
+
+[cols="1a,1a,4a"]
+|===
+| 코드 | 필드에 입력합니다 | 설명 
+
+
+ a| 
+CBID
+ a| 
+콘텐츠 블록 ID입니다
+ a| 
+아카이빙할 컨텐츠 블록의 고유 식별자입니다.
+
+
+
+ a| 
+VLID
+ a| 
+볼륨 식별자
+ a| 
+컨텐츠 블록이 기록되는 볼륨의 고유 식별자입니다. 작업이 실패하면 0의 볼륨 ID가 반환됩니다.
+
+
+
+ a| 
+RSLT
+ a| 
+결과
+ a| 
+콘텐츠 블록의 전송 결과를 나타냅니다. 현재 정의된 값은 다음과 같습니다.
+
+* SUCS: 성공(콘텐츠 블록이 성공적으로 저장됨)
+* exis: ignored(콘텐츠 블록이 이미 저장됨)
+* ISFD: 실패(디스크 공간 부족)
+* ster:failed(CBID를 저장하는 동안 오류가 발생했습니다.)
+* OFFL: failed(보관 오프라인)
+* GERR: 실패(일반 오류)
+
+
+|===

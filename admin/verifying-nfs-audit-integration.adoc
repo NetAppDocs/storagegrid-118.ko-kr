@@ -1,0 +1,35 @@
+---
+permalink: admin/verifying-nfs-audit-integration.html 
+sidebar: sidebar 
+keywords: nfs, audit share, audit client 
+summary: 감사 공유를 구성하고 NFS 감사 클라이언트를 추가한 후에는 감사 클라이언트 공유를 마운트하고 감사 공유에서 해당 파일을 사용할 수 있는지 확인할 수 있습니다. 
+---
+= NFS 감사 통합을 검증합니다
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+감사 공유를 구성하고 NFS 감사 클라이언트를 추가한 후에는 감사 클라이언트 공유를 마운트하고 감사 공유에서 해당 파일을 사용할 수 있는지 확인할 수 있습니다.
+
+
+NOTE: NFS에 대한 지원은 더 이상 사용되지 않으며 향후 릴리즈에서 제거될 예정입니다.
+
+.단계
+. AMS 서비스를 호스팅하는 관리 노드의 클라이언트 측 IP 주소를 사용하여 연결(또는 클라이언트 시스템의 변형)을 확인합니다. 입력: `ping IP_address`
++
+서버가 응답하여 연결을 나타내는지 확인합니다.
+
+. 클라이언트 운영 체제에 적합한 명령을 사용하여 감사 읽기 전용 공유를 마운트합니다. Linux 명령의 예는 다음과 같습니다(한 줄에 입력).
++
+`mount -t nfs -o hard,intr _Admin_Node_IP_address_:/var/local/log _myAudit_`
+
++
+AMS 서비스를 호스팅하는 관리 노드의 IP 주소와 감사 시스템에 대해 미리 정의된 공유 이름을 사용합니다. 마운트 지점은 클라이언트에서 선택한 모든 이름일 수 있습니다(예: `_myAudit_` 이전 명령에서).
+
+. 감사 공유에서 파일을 사용할 수 있는지 확인합니다. 입력: `ls _myAudit_ /*`
++
+위치 `_myAudit_` 감사 공유의 마운트 지점입니다. 하나 이상의 로그 파일이 나열되어야 합니다.
+
+
