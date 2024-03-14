@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: storagegrid-hardware.html 
 keywords: storagegrid, software, grid 
-summary: StorageGRID 어플라이언스 하드웨어를 구성 및 사용하는 방법에 대해 알아보십시오. 
+summary: StorageGRID 어플라이언스 하드웨어를 설치, 구성 및 사용하는 방법에 대해 알아보십시오. 
 ---
-= StorageGRID 어플라이언스를 설치합니다
+= StorageGRID 어플라이언스
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

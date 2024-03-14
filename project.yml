@@ -1,6 +1,7 @@
 ---
 settings:
   name: StorageGRID 11.8
+  search: storagegrid-enable,storagegrid-118,storagegrid-appliances
   internal:
     pdf_enabled: false
     termcheck_enabled: false
@@ -13,6 +14,8 @@ sidebar:
   entries:
   - title: StorageGRID 11.8 문서
     url: "/index.html"
+  - title: StorageGRID 어플라이언스
+    url: "/storagegrid-hardware.html"
   - title: 릴리스 정보
     url: "/release-notes/index.html"
   - title: 시작하십시오
