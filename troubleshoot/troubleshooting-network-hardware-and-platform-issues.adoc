@@ -88,7 +88,7 @@ MTU 설정의 차이는 일부(전기는 아님) eth0 네트워크가 점보 프
 . 모든 노드의 eth0에 대한 MTU 설정을 나열합니다.
 +
 ** Grid Manager에 제공된 쿼리를 사용합니다.
-** 로 이동합니다 `_primary Admin Node IP address_/metrics/graph` 다음 쿼리를 입력합니다. `node_network_mtu_bytes{interface='eth0'}`
+** 로 이동합니다 `_primary Admin Node IP address_/metrics/graph` 다음 쿼리를 입력합니다. `node_network_mtu_bytes{device="eth0"}`
 
 
 . https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/changing-mtu-setting.html["MTU 설정을 수정합니다"^] 모든 노드의 그리드 네트워크 인터페이스(eth0)에 대해 동일한 상태를 유지하도록 합니다.
