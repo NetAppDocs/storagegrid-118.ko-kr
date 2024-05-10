@@ -25,7 +25,7 @@ OS 볼륨 및 첫 번째 스토리지 볼륨의 성능은 시스템의 전반적
 
 == NetApp ONTAP 스토리지를 사용하는 가상 머신에 대한 요구 사항
 
-StorageGRID 노드를 NetApp ONTAP 시스템에서 할당된 스토리지가 있는 가상 머신으로 구축하는 경우 볼륨에 FabricPool 계층화 정책이 설정되어 있지 않은 것이 확인되었습니다. 예를 들어 StorageGRID 노드가 VMware 호스트에서 가상 머신으로 실행 중인 경우 데이터 저장소를 백업하는 볼륨에 FabricPool 계층화 정책이 설정되어 있지 않은지 확인합니다. StorageGRID 노드와 함께 사용되는 볼륨에 대해 FabricPool 계층화를 사용하지 않도록 설정하면 문제 해결과 스토리지 작업이 간소화됩니다.
+StorageGRID 노드를 NetApp ONTAP 시스템에서 할당된 스토리지가 있는 가상 머신으로 구축하는 경우 볼륨에 FabricPool 계층화 정책이 설정되어 있지 않은 것이 확인되었습니다. 예를 들어 StorageGRID 노드가 VMware 호스트에서 가상 머신으로 실행 중인 경우 노드의 데이터 저장소를 백업하는 볼륨에 FabricPool 계층화 정책이 설정되어 있지 않은지 확인합니다. StorageGRID 노드와 함께 사용되는 볼륨에 대해 FabricPool 계층화를 사용하지 않도록 설정하면 문제 해결과 스토리지 작업이 간소화됩니다.
 
 
 NOTE: FabricPool를 사용하여 StorageGRID 관련 데이터를 StorageGRID 자체로 계층화하지 마십시오. StorageGRID 데이터를 StorageGRID로 다시 계층화하면 문제 해결과 운영 복잡성이 늘어납니다.
@@ -84,6 +84,8 @@ LUN당 최소 크기: 4TB
  a| 
 스토리지 노드(메타데이터만)
  a| 
+OS용 100GB LUN
+
 LUN 1개
 
 LUN당 최소 크기: 4TB

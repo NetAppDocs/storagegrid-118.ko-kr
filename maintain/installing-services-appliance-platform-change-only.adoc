@@ -24,6 +24,6 @@ VMware 또는 Linux 호스트에서 호스팅되는 장애가 발생한 그리�
 VMware 또는 Linux에서 호스팅되어 서비스 어플라이언스에서 호스팅되는 노드로 대체되는 장애가 발생한 노드를 복구하는 경우에만 이 절차를 수행하십시오.
 
 .단계
-. 새 SG100 또는 SG1000 서비스 어플라이언스 설치 지침을 따르십시오. 을 참조하십시오 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["하드웨어 설치를 빠르게 시작합니다"^].
+. 새 서비스 어플라이언스 설치에 대한 지침을 따릅니다. 을 참조하십시오 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["하드웨어 설치를 빠르게 시작합니다"^].
 . 노드 이름을 묻는 메시지가 표시되면 장애가 발생한 노드의 노드 이름을 사용합니다.
 

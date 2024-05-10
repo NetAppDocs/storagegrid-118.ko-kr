@@ -76,6 +76,13 @@ NOTE: 을(를) 발행하는 경우 `service servermanager stop` 명령 어플라
 +
 [role="tabbed-block"]
 ====
+.SG110 또는 SG1100
+--
+.. 제품의 전원을 끕니다.
+.. 파란색 전원 LED가 꺼질 때까지 기다립니다.
+
+
+--
 .SG100 또는 SG1000입니다
 --
 .. 제품의 전원을 끕니다.
@@ -150,6 +157,7 @@ NOTE: 스토리지 노드가 다시 시작될 때까지 관리 노드에 로그�
 
 .관련 정보
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 스토리지 어플라이언스"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["SG110 및 SG1100 서비스 어플라이언스"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["SG100 및 SG1000 서비스 어플라이언스"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["SG6000 스토리지 어플라이언스"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["SG5700 스토리지 어플라이언스"^]

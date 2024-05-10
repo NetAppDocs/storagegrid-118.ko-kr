@@ -57,7 +57,7 @@ SelectObjectContent 요청은 로 보내야 합니다 link:configuring-load-bala
 
 끝점에서 사용하는 관리자 및 게이트웨이 노드는 다음 중 하나여야 합니다.
 
-* SG100 또는 SG1000 어플라이언스 노드
+* 서비스 어플라이언스 노드입니다
 * VMware 기반 소프트웨어 노드입니다
 * cgroup v2가 활성화된 커널을 실행하는 베어 메탈 노드
 

@@ -35,7 +35,7 @@ link:all-node-types-replacing-linux-node.html["Linux 노드를 교체합니다"]
 
 
  a| 
-SG100 및 SG1000 서비스 어플라이언스
+서비스 어플라이언스
  a| 
 link:replacing-failed-node-with-services-appliance.html["서비스 어플라이언스를 교체하십시오"]
 

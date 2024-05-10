@@ -23,7 +23,7 @@ summary: '여러 관리 및 게이트웨이 노드의 네트워크 인터페이�
 
 * 게이트웨이 노드, 관리 노드 또는 둘 다 포함된 HA 그룹은 S3 및 Swift 클라이언트에 고가용성 데이터 연결을 제공합니다.
 * 관리 노드만 포함하는 HA 그룹은 Grid Manager 및 테넌트 관리자에 대한 고가용성 연결을 제공합니다.
-* SG100 또는 SG1000 어플라이언스와 VMware 기반 소프트웨어 노드를 포함하는 HA 그룹은 에 고가용성 연결을 제공할 수 있습니다 link:../admin/manage-s3-select-for-tenant-accounts.html["S3 Select를 사용하는 S3 테넌트"].
+* 서비스 어플라이언스와 VMware 기반 소프트웨어 노드만 포함하는 HA 그룹은 용 고가용성 연결을 제공할 수 있습니다 link:../admin/manage-s3-select-for-tenant-accounts.html["S3 Select를 사용하는 S3 테넌트"].
 S3 Select를 사용할 때는 HA 그룹을 사용하는 것이 좋지만 반드시 필요한 것은 아닙니다.
 
 

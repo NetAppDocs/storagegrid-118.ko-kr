@@ -60,7 +60,7 @@ S3 또는 Swift 클라이언트 액세스 -- 로드 밸런서 서비스
  a| 
 에 대한 S3 클라이언트 액세스 link:../admin/manage-s3-select-for-tenant-accounts.html["S3 를 선택합니다"]
  a| 
-* SG100 또는 SG1000 어플라이언스
+* 서비스 어플라이언스
 * VMware 기반 소프트웨어 노드입니다
 
 
