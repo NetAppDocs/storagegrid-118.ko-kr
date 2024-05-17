@@ -31,9 +31,9 @@ summary: 이 섹션에서는 StorageGRID가 멀티파트 업로드 작업을 지
 
 
 * 모든 멀티 파트 업로드 작업은 StorageGRID를 지원합니다 link:consistency-controls.html["일관성 값"].
+* 멀티파트 업로드를 사용하여 개체를 수집하는 경우 는 을(를) 사용합니다 link:../admin/what-object-segmentation-is.html["객체 분할 임계값(1GiB)"] 적용되지 않습니다.
 * 필요에 따라 를 사용할 수 있습니다 link:using-server-side-encryption.html["서버 측 암호화"] 멀티 파트 업로드가 가능합니다. SSE(StorageGRID 관리 키 사용 시 서버 측 암호화)를 사용하려면 를 포함합니다 `x-amz-server-side-encryption` CreateMultipartUpload 요청의 요청 헤더만. SSE-C(고객 제공 키를 사용한 서버측 암호화)를 사용하려면 CreateMultipartUpload 요청과 이후의 각 UploadPart 요청에서 동일한 3개의 암호화 키 요청 헤더를 지정합니다.
-
-
++
 [cols="2a,3a"]
 |===
 | 작동 | 구축 
@@ -89,3 +89,4 @@ ListMultipartUploads 를 참조하십시오
 을 참조하십시오 link:upload-part-copy.html["업로드파트 복사"]
 
 |===
+
