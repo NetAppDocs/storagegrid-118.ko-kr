@@ -74,6 +74,12 @@ NOTE: 을(를) 발행하는 경우 `service servermanager stop` 명령 어플라
 ... 파란색 전원 LED가 꺼질 때까지 기다립니다.
 
 
+** SG6160 어플라이언스의 경우
++
+... SG6100-CN 스토리지 컨트롤러의 전원을 끕니다.
+... SG6100-CN 스토리지 컨트롤러의 파란색 전원 LED가 꺼질 때까지 기다립니다.
+
+
 ** SG6000 어플라이언스의 경우
 +
 ... 스토리지 컨트롤러 후면의 녹색 캐시 활성 LED가 꺼질 때까지 기다립니다.
@@ -101,7 +107,7 @@ StorageGRID 그리드가 이제 종료되었습니다.
 
 
 .관련 정보
-https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 스토리지 어플라이언스"^]
+https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 및 SG6160 스토리지 어플라이언스"^]
 
 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["SG6000 스토리지 어플라이언스"^]
 

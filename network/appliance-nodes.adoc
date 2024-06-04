@@ -19,6 +19,7 @@ StorageGRID 어플라이언스의 10/25-GbE 포트는 그리드 네트워크 및
 
 제품의 포트 연결 모드에 대한 자세한 내용은 다음을 참조하십시오.
 
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["포트 본드 모드(SG6160)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6100.html#port-bond-modes["포트 결합 모드(SGF6112)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg6000.html#port-bond-modes["포트 결합 모드(SG6000-CN 컨트롤러)"^]
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/gathering-installation-information-sg5700.html#port-bond-modes["포트 결합 모드(E5500SG 컨트롤러)"^]

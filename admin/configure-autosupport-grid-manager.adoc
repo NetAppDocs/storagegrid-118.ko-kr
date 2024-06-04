@@ -190,10 +190,10 @@ SANtricity를 사용하여 각 스토리지 어플라이언스에 대해 AutoSup
 
 에서 AutoSupport 제공을 프록시 구성하는 경우 E-Series 어플라이언스의 AutoSupport 패키지를 StorageGRID AutoSupport에 포함할 수 있습니다 link:../admin/sending-eseries-autosupport-messages-through-storagegrid.html["SANtricity 시스템 관리자"].
 
-StorageGRID AutoSupport은 DIMM 또는 HIC(호스트 인터페이스 카드) 오류와 같은 하드웨어 문제를 보고하지 않습니다. 그러나 일부 구성 요소 장애가 발생할 수 있습니다 link:../monitor/alerts-reference.html["하드웨어 경고"]. SG100, SG1000, SG6060 또는 SGF6024와 같이 BMC(베이스보드 관리 컨트롤러)가 있는 StorageGRID 어플라이언스의 경우, 하드웨어 오류를 보고하도록 e-메일 및 SNMP 트랩을 구성할 수 있습니다.
+StorageGRID AutoSupport은 DIMM 또는 HIC(호스트 인터페이스 카드) 오류와 같은 하드웨어 문제를 보고하지 않습니다. 그러나 일부 구성 요소 장애가 발생할 수 있습니다 link:../monitor/alerts-reference.html["하드웨어 경고"]. BMC(베이스보드 관리 컨트롤러)가 있는 StorageGRID 어플라이언스의 경우 e-메일 및 SNMP 트랩을 구성하여 하드웨어 오류를 보고할 수 있습니다.
 
 * https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/setting-up-email-notifications-for-alerts.html["BMC 알림에 대한 이메일 알림을 설정합니다"^]
-* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-snmp-settings-for-bmc.html["BMC에 대한 SNMP 설정을 구성합니다"^] SG6000-CN 컨트롤러 또는 SG100 및 SG1000 서비스 어플라이언스의 경우
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-snmp-settings-for-bmc.html["BMC에 대한 SNMP 설정을 구성합니다"^]
 
 
 .관련 정보
