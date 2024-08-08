@@ -385,6 +385,8 @@ sidebar:
       url: "/maintain/how-site-recovery-is-performed-by-technical-support.html"
   - title: StorageGRID를 활성화합니다
     url: "/storagegrid-enable.html"
+  - title: StorageGRID and BlueXP  를 참조하십시오
+    url: "/storagegrid-bluexp.html"
   - title: 기타 버전
     url: "/earlier-versions.html"
   - title: 법적 고지
