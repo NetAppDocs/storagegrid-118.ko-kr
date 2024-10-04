@@ -80,7 +80,7 @@ link:configuring-admin-proxy-settings.html["관리자 프록시 설정 구성에
 
 == 이벤트가 트리거된 AutoSupport를 비활성화합니다
 
-기본적으로 StorageGRID 시스템은 매시간 또는 중요한 경고나 기타 중요한 시스템 이벤트가 발생할 때마다 AutoSupport 패키지를 기술 지원에 보내도록 구성됩니다.
+기본적으로 StorageGRID 시스템은 한 시간마다 AutoSupport 패키지를 기술 지원으로 보내도록 구성되어 있습니다.
 
 이벤트에 의해 트리거되는 AutoSupport는 언제든지 비활성화할 수 있습니다.
 

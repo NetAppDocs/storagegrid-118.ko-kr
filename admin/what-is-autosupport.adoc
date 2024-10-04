@@ -64,7 +64,7 @@ AutoSupport 압축 크기 +
 AutoSupport 압축 해제 크기 +
 총 수집 시간(ms)
  a| 
-AutoSupport 기록 파일
+AutoSupport 기록 파일.
 
 
 
@@ -158,6 +158,29 @@ StorageGRID 구성 및 배포에 사용됩니다. 그리드 사양, NTP 서버 I
 
 
  a| 
+그리드.JSON
+ a| 
+그리드 + 개정 + 소프트웨어 버전 + 설명 + 라이센스 + 암호 + DNS + NTP + 사이트 + 노드
+ a| 
+그리드 정보
+
+
+
+ a| 
+ILM-configuration.xml을 참조하십시오
+ a| 
+속성 ID+
+속성 이름 +
+값 +
+색인 +
+테이블 ID+
+테이블 이름
+ a| 
+ILM 구성에 대한 특성 목록입니다.
+
+
+
+ a| 
 ILM-STATUS.xml입니다
  a| 
 노드 +
@@ -178,7 +201,7 @@ ILM.xml을 참조하십시오
  a| 
 ILM 원시 XML
  a| 
-ILM 활성 정책 파일 스토리지 풀 ID, 수집 동작, 필터, 규칙 및 설명과 같은 활성 ILM 정책에 대한 세부 정보를 제공합니다.
+ILM 활성 정책 파일 스토리지 풀 ID, 수집 동작, 필터, 규칙 및 설명과 같은 활성 ILM 정책에 대한 세부 정보를 제공합니다. 기본 ILM 정책에 대한 XML도 포함되어 있습니다.
 
 
 
