@@ -90,6 +90,8 @@ indexpage:
       url: https://community.netapp.com/
   - title: 기타 버전
     links:
+    - title: StorageGRID 11.9 설명서
+      url: https://docs.netapp.com/us-en/storagegrid/index.html
     - title: StorageGRID 11.7 설명서
       url: https://docs.netapp.com/us-en/storagegrid-117/index.html
     - title: StorageGRID 11.6 설명서
