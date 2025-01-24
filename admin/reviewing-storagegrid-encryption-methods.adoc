@@ -45,7 +45,7 @@ StorageGRID 어플라이언스 설치 프로그램의 드라이브 암호화 페
  a| 
 SANtricity 시스템 관리자의 드라이브 보안
  a| 
-드라이브 보안 기능이 SG5700 또는 SG6000 스토리지 어플라이언스에 대해 활성화된 경우 를 사용할 수 있습니다 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity 시스템 관리자"^] 보안 키를 생성하고 관리합니다. 보안 드라이브의 데이터에 액세스하려면 키가 필요합니다.
+StorageGRID 어플라이언스에 드라이브 보안 기능이 활성화된 경우 를 사용하여 보안 키를 생성하고 관리할 수 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity 시스템 관리자"^] 있습니다. 보안 드라이브의 데이터에 액세스하려면 키가 필요합니다.
  a| 
 FDE(전체 디스크 암호화) 드라이브 또는 자체 암호화 드라이브를 사용하는 스토리지 어플라이언스 보안 드라이브의 모든 데이터는 데이터 센터에서 물리적 손실 또는 제거로부터 보호됩니다. 일부 스토리지 어플라이언스나 서비스 어플라이언스와 함께 사용할 수 없습니다.
 
