@@ -60,7 +60,7 @@ image::../media/nodes_storage_nodes_objects_page_lost_object.png[노드 스토�
 
 . 를 사용합니다 `ObjectByUUID` 명령을 사용하여 해당 ID(UUID)로 개체를 찾은 다음 데이터가 위험에 처하는지 확인합니다.
 +
-.. LDR 콘솔에 액세스하려면 localhost 1402에 Telnet을 사용합니다.
+.. SSH를 사용하여 스토리지 노드에 로그인합니다. 그런 다음 "telnet 0 1402"를 입력하여 LDR 콘솔에 액세스합니다.
 .. 입력: `/proc/OBRP/ObjectByUUID UUID_value`
 +
 이 첫 번째 예제에서는 의 개체를 보여 줍니다 `UUID 926026C4-00A4-449B-AC72-BCCA72DD1311` 에는 두 개의 위치가 나열되어 있습니다.

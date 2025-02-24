@@ -120,7 +120,7 @@ NOTE: 특수 문자를 이스케이프하려면 항상 명령에서 개체 파�
 . 개체 경로를 찾은 경우 개체를 StorageGRID로 복원해 보십시오.
 +
 .. 동일한 스토리지 노드에서 StorageGRID에서 관리할 수 있도록 객체 파일의 소유권을 변경합니다. 입력: `chown ldr-user:bycast 'file_path_of_object'`
-.. LDR 콘솔에 액세스하려면 localhost 1402에 Telnet을 사용합니다. 입력: `telnet 0 1402`
+.. SSH를 사용하여 스토리지 노드에 로그인합니다. 그런 다음 "telnet 0 1402"를 입력하여 LDR 콘솔에 액세스합니다.
 .. 입력: `cd /proc/STOR`
 .. 입력: `Object_Found 'file_path_of_object'`
 +
