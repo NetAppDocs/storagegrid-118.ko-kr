@@ -86,7 +86,9 @@ mv audit.log _new_name_.txt
 
 . 감사 로그 파일에 대한 사용자 및 그룹 설정을 업데이트합니다.
 +
-`cd /var/local/log` 를 누릅니다
+`cd /var/local/log`
+
++
 `chown ams-user:bycast *`
 
 . 서버에서 로그아웃합니다.
