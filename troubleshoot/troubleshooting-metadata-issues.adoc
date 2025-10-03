@@ -191,11 +191,18 @@ Cassandra 데이터베이스에 메모리 부족 오류가 발생하면 SMTT(Tot
 Cassandra 데이터베이스에 대해 메모리 부족 오류가 발생하면 힙 덤프가 생성되고, SMTT(Total Events) 경보가 트리거되고, Cassandra 힙 Out of Memory Errors 카운트가 1씩 증가합니다.
 
 .단계
-. 이벤트를 보려면 * 지원 * > * 도구 * > * 그리드 토폴로지 * > * 구성 * 을 선택합니다.
+. 이벤트 보기:
++
+.. 지원 * > * 도구 * > * 그리드 토폴로지 * 를 선택합니다.
+.. 사이트를 확장한 다음 *_grid_node_*를 선택합니다.
+.. *SSM*을 선택한 다음 *이벤트* > *구성*을 선택합니다.
+
+
 . Cassandra 힙 Out of Memory Errors 카운트가 1 이상인지 확인합니다.
 +
 가능합니다 link:../monitor/running-diagnostics.html["진단 유틸리티를 실행합니다"] 그리드의 현재 상태에 대한 추가 정보를 얻습니다.
 
+. SSH를 사용하여 "admin"으로 선택한 노드에 로그인하고 로컬 루트 사용자로 전환합니다.
 . 로 이동합니다 `/var/local/core/`를 압축합니다 `Cassandra.hprof` 파일을 작성하여 기술 지원 부서에 보냅니다.
 . 의 백업을 만듭니다 `Cassandra.hprof` 파일을 선택하여 에서 삭제합니다 `/var/local/core/ directory`.
 +
