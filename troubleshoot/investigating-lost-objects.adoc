@@ -2,7 +2,7 @@
 permalink: troubleshoot/investigating-lost-objects.html 
 sidebar: sidebar 
 keywords: lost objects, investigating, objects 
-summary: Objects Lost * 경고가 트리거되면 즉시 조사해야 합니다. 영향을 받는 개체에 대한 정보를 수집하고 기술 지원 부서에 문의하십시오. 
+summary: 분실물 경보가 울리면 즉시 조사해야 합니다. 영향을 받은 객체에 대한 정보를 수집하고 기술 지원팀에 문의하세요. 
 ---
 = 손실된 개체를 조사합니다
 :allow-uri-read: 
