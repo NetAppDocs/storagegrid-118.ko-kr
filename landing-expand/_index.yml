@@ -1,5 +1,9 @@
 ---
 indexpage:
+  title: 그리드를 확장합니다
+  summary: 시스템 운영을 중단하지 않고 StorageGRID 시스템의 용량이나 기능을 확장할 수 있습니다.
+  keywords: storagegrid system, capacity, grid, capabilities, operations, expansion
+  lead: 시스템 운영을 중단하지 않고 StorageGRID 시스템의 용량이나 기능을 확장할 수 있습니다.
   tiles:
   - title: 시작하십시오
     links:
