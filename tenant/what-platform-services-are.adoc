@@ -81,7 +81,7 @@ CloudMirror 복제
 
  a| 
 * link:configuring-cloudmirror-replication.html["CloudMirror 복제"]
-* link:../s3/operations-on-buckets.htmll["버킷 작업"]
+* link:../s3/operations-on-buckets.html["버킷 작업"]
 
 
 
@@ -94,7 +94,7 @@ CloudMirror 복제
 
  a| 
 * link:configuring-event-notifications.html["알림"]
-* link:../s3/s3/operations-on-buckets.html["버킷 작업"]
+* link:../s3/operations-on-buckets.html["버킷 작업"]
 
 
 
